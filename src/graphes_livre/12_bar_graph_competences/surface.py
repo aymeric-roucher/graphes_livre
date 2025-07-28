@@ -13,8 +13,8 @@ def gaussian_surface(X, Y, center_x, center_y, amplitude, sigma_x, sigma_y):
     )
 
 
-x = np.linspace(-3, 4, 1000)
-y = np.linspace(0, 6, 1000)
+x = np.linspace(-3, 4, 500)
+y = np.linspace(0, 6, 500)
 X, Y = np.meshgrid(x, y)
 
 fig = go.Figure()
