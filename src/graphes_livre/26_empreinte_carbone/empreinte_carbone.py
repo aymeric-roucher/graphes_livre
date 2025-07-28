@@ -13,14 +13,14 @@ title_emissions = "Emissions du travail d'un jour (g CO2e)"
 footprints = [
     {"Poste": "LLM", title_emissions: chatgpt_query_g / duration_hours * 8},
     {
-        "Poste": "Ordinateur portable",
+        "Poste": "Ordinateur<br>portable",
         title_emissions: laptop_footprint_duration_g / duration_hours * 8,
     },
     {
-        "Poste": "Ordinateur fixe",
+        "Poste": "Ordinateur<br>fixe",
         title_emissions: desktop_footprint_duration_g / duration_hours * 8,
     },
-    {"Poste": "Transport en voiture", title_emissions: 8000},
+    {"Poste": "Transport en<br>voiture", title_emissions: 8000},
 ]
 footprints = pd.DataFrame.from_dict(footprints, orient="columns")
 fig = px.bar(footprints, x="Poste", y=title_emissions, barmode="group")
@@ -32,7 +32,7 @@ fig.update_traces(
 )
 
 apply_template(fig, annotation_text="")
-fig.update_layout(width=500)
+fig.update_layout(width=600, height=500)
 fig.update_xaxes(title=None)
 fig.update_traces(marker_color=SEA_BLUE)
 fig.write_html(get_output_path("html"))

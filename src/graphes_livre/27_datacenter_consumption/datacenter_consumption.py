@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-from graphes_livre import apply_template, get_output_path
+from graphes_livre import SEA_BLUE, apply_template, get_output_path
 
 datacenter_consumption = {
     2000: 13.95147313691507,
@@ -34,6 +34,7 @@ datacenter_consumption = pd.Series(datacenter_consumption).reset_index()
 datacenter_consumption.columns = ["Année", "Consommation (TWh)"]
 
 fig = px.line(datacenter_consumption, x="Année", y="Consommation (TWh)")
+fig.update_traces(line_color=SEA_BLUE)
 apply_template(fig)
 
 fig.update_layout(width=500)
@@ -46,7 +47,7 @@ fig.add_shape(
     x1=fig.data[0].x[-1],  # End of x-axis
     y0=ITALY_CONSUMPTION,
     y1=ITALY_CONSUMPTION,
-    line=dict(color="black", width=1),
+    line=dict(color="gray", width=1),
 )
 
 # Add annotation for Italy
@@ -59,9 +60,9 @@ fig.add_annotation(
     yanchor="middle",
 )
 fig.update_xaxes(
-    range=[2000, 2024],  # Set axis range
-    tick0=2000,  # Start ticks at 2000
-    dtick=4,  # Show tick every 4 years
+    range=[2000, 2024],
+    tick0=2000,
+    dtick=4,
 )
 
 fig.write_html(get_output_path("html"))
