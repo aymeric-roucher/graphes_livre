@@ -9,6 +9,8 @@ from scipy.special import expit
 
 from graphes_livre import apply_template, get_output_path
 
+USE_CONTINENTS = True
+
 
 def download_latest_data_from_space(
     repo_id: str, file_type: Literal["pkl", "csv"]
@@ -96,6 +98,10 @@ def format_data(df):
 # Function to create sigmoid transition
 def sigmoid_transition(x, x0, k=0.1):
     return expit(k * (x - x0))
+
+
+def linear_transition(x, x0, k=0.1):
+    return x0 + k * (x - x0)
 
 
 def main():
@@ -193,18 +199,40 @@ def main():
     merged_dfs = {k: format_data(v) for k, v in merged_dfs.items()}
 
     # get constants
-    min_elo_score, max_elo_score = get_constants(merged_dfs)
-    date_updated = str(elo_results["full"]["last_updated_datetime"]).split(" ")[0]
-    orgs = merged_dfs["Overall"].Organization.unique().tolist()
-
     df = merged_dfs["Overall"]
 
-    top_orgs = df.groupby("Organization")["rating"].max().nlargest(11).index.tolist()
-    top_orgs = [el for el in top_orgs if el not in ["NexusFlow", "Princeton", "Nvidia"]]
-
+    top_orgs = df.groupby("Organization")["rating"].max().nlargest(13).index.tolist()
+    print(top_orgs)
+    top_orgs = [
+        el
+        for el in top_orgs
+        if el not in ["NexusFlow", "Princeton", "Nvidia", "MiniMax", "Zhipu"]
+    ]
     df = df.loc[(df["Organization"].isin(top_orgs)) & (df["rating"] > 1000)]
+    if USE_CONTINENTS:
+        df["Organization"] = df["Organization"].map(
+            {
+                "OpenAI": "Etats-Unis",
+                "Google": "Etats-Unis",
+                "xAI": "Etats-Unis",
+                "Anthropic": "Etats-Unis",
+                "Meta": "Etats-Unis",
+                "Alibaba": "Chine",
+                "DeepSeek": "Chine",
+                "01 AI": "Chine",
+                "DeepSeek AI": "Chine",
+                "Mistral": "France",
+                "Reka AI": "Etats-Unis",
+                "Zhipu AI": "Chine",
+                "MiniMax": "Chine",
+                "Qwen": "Chine",
+                "Tencent": "Chine",
+                "Moonshot": "Chine",
+            }
+        )
+
     print("Missing release dates:")
-    print(df.loc[df["Release Date"].isna()])
+    print(df.loc[df["Release Date"].isna()][["rating", "key", "Model"]])
 
     df = df.loc[~df["Release Date"].isna()]
 
@@ -213,9 +241,14 @@ def main():
 
     # Sort the DataFrame by Release Date and rating (descending)
     df = df.sort_values(["Release Date", "rating"], ascending=[True, False])
+    df = df.loc[
+        ~df["Model"]
+        .str.lower()
+        .apply(lambda x: "early" in x or "preview" in x or "experimental" in x)
+    ]
 
-    # Define the current date (October 3, 2024)
-    current_date = pd.Timestamp("2025-01-31")
+    # Define the current date
+    current_date = pd.Timestamp(year=2025, month=6, day=1)
 
     # Define organization to country mapping and colors
     org_info = {
@@ -232,7 +265,18 @@ def main():
         "AI21 Labs": ("#1E90FF", "🇮🇱"),  # Dodger Blue,
         "Reka AI": ("#FFC300", "🇺🇸"),
         "Zhipu AI": ("#FFC300", "🇨🇳"),
+        "Moonshot": ("#000000", "🇨🇳"),
+        "Qwen": ("#000000", "🇨🇳"),
+        "Tencent": ("#BBBBBB", "🇨🇳"),
+        "MiniMax": ("#000000", "🇨🇳"),
+        "Cohere": ("#d9a6e5", "🇨🇦"),
     }
+    if USE_CONTINENTS:
+        org_info = {
+            "Etats-Unis": ("#4285F4", "🇺🇸"),
+            "Chine": ("#C70039", "🇨🇳"),
+            "France": ("#ff7000", "🇫🇷"),
+        }
 
     # Create figure
     fig = go.Figure()
@@ -252,7 +296,29 @@ def main():
             best_models = []
 
             # Group by date and get the best model for each date
-            daily_best = org_data.groupby("Release Date").first().reset_index()
+            daily_best = (
+                org_data.sort_values("rating", ascending=False)
+                .groupby("Release Date")
+                .first()
+                .reset_index()
+            )
+
+            # Filter out updates less than N days apart, keeping only the later one
+            filtered_best = []
+            for _, row in daily_best.iterrows():
+                if not filtered_best:
+                    filtered_best.append(row)
+                else:
+                    days_diff = (
+                        row["Release Date"] - filtered_best[-1]["Release Date"]
+                    ).days
+                    if days_diff >= 20:
+                        filtered_best.append(row)
+                    else:
+                        # Replace the previous entry with the later one
+                        filtered_best[-1] = row
+
+            daily_best = pd.DataFrame(filtered_best)
 
             for _, row in daily_best.iterrows():
                 if row["rating"] > current_best:
@@ -268,9 +334,10 @@ def main():
 
                         transition_y = current_best + (
                             row["rating"] - current_best
-                        ) * sigmoid_transition(
-                            np.linspace(-6, 6, len(transition_points)), 0, k=1
-                        )
+                        ) * np.linspace(0, 1, len(transition_points))
+                        # * sigmoid_transition(
+                        #     np.linspace(-6, 6, len(transition_points)), 0, k=1
+                        # )
                         y_values.extend(transition_y)
 
                     x_values.append(row["Release Date"])
@@ -298,37 +365,50 @@ def main():
                 )
             )
 
-            # Add scatter plot for best model points
-            best_models_df = pd.DataFrame(best_models)
-            fig.add_trace(
-                go.Scatter(
-                    x=best_models_df["Release Date"],
-                    y=best_models_df["rating"],
-                    mode="markers",
-                    name=org,
-                    showlegend=False,
-                    marker=dict(color=color, size=8, symbol="circle"),
-                    text=best_models_df["Model"],
-                    hovertemplate="<b>%{text}</b><br>Date: %{x}<br>ELO Score: %{y:.2f}<extra></extra>",
-                )
+            fig.add_annotation(
+                x=x_values[-1],
+                y=y_values[-1],
+                text=f" {org}",
+                showarrow=False,
+                font=dict(size=17, color=color),
+                xref="x",
+                yref="y",
+                xanchor="left",
             )
+
+            # Add scatter plot for best model points
+            # best_models_df = pd.DataFrame(best_models)
+            # fig.add_trace(
+            #     go.Scatter(
+            #         x=best_models_df["Release Date"],
+            #         y=best_models_df["rating"],
+            #         mode="markers",
+            #         name=org,
+            #         showlegend=False,
+            #         marker=dict(color=color, size=8, symbol="circle"),
+            #         text=best_models_df["Model"],
+            #         hovertemplate="<b>%{text}</b><br>Date: %{x}<br>ELO Score: %{y:.2f}<extra></extra>",
+            #     )
+            # )
 
     # Update layout
     fig.update_layout(
         xaxis_title="Date",
         yaxis_title="Score ELO",
-        legend_title="Classement en Janvier 24",
+        # legend_title="Classement en Janvier 24",
         hovermode="closest",
         xaxis_range=[
             pd.Timestamp("2024-01-01"),
             current_date,
         ],  # Extend x-axis for labels
-        yaxis_range=[1103, 1400],
+        yaxis_range=[1151, 1500],
+        showlegend=False,
+        # margin=dict(r=-60),
     )
-    apply_template(fig, width=800, height=500)
-
+    apply_template(fig, width=700, height=500)
     fig.update_xaxes(
         tickformat="%m-%Y",
+        range=[pd.Timestamp("2024-01-01"), current_date + pd.Timedelta(days=10)],
     )
     fig.write_html(get_output_path("html"))
 

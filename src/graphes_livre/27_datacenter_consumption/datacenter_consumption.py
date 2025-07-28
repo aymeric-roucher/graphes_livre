@@ -52,12 +52,13 @@ fig.add_shape(
 
 # Add annotation for Italy
 fig.add_annotation(
-    x=fig.data[0].x[-1],  # Place annotation at the end of x-axis
-    y=ITALY_CONSUMPTION,
-    text="Italie",
-    xshift=20,  # Shift label slightly to the right
+    x=2008,  # Place annotation at the end of x-axis
+    y=ITALY_CONSUMPTION + 10,
+    text="Consommation de l'Italie",
+    # xshift=20,  # Shift label slightly to the right
     showarrow=False,
     yanchor="middle",
+    font=dict(color="gray", style="italic"),
 )
 fig.update_xaxes(
     range=[2000, 2024],

@@ -4,6 +4,7 @@
 
 import pandas as pd
 import plotly.express as px
+
 from graphes_livre import apply_template, get_output_path
 
 BEGIN_YEAR = 1900
@@ -302,11 +303,9 @@ fig = px.line(
     color="Domaine",
 )
 
-apply_template(
-    fig,
-)
 # Update layout
-fig.update_layout(width=900, height=450)
 fig.update_yaxes(title="Différence de score (%)")
 # Show the plot
+apply_template(fig, width=2000, height=400)
+
 fig.write_image(get_output_path("png"), scale=5)

@@ -1,10 +1,5 @@
 [
     {
-        "key": "deepseek-r1",
-        "Model": "DeepSeek-R1",
-        "Release Date": "2025-01-30"
-    },
-    {
         "key": "gpt-4-turbo-2024-04-09",
         "Model": "GPT-4-Turbo-2024-04-09",
         "Release Date": "2024-04-09"
@@ -968,5 +963,340 @@
         "key": "smollm2-1.7b-instruct",
         "Model": "SmolLM2-1.7B-Instruct",
         "Release Date": "2024-11-21"
+    },
+    {
+        "key": "chatgpt-4o-latest-20250129",
+        "Model": "ChatGPT-4o-latest (2025-01-29)",
+        "Release Date": "2025-01-29"
+    },
+    {
+        "key": "deepseek-r1",
+        "Model": "DeepSeek-R1",
+        "Release Date": "2025-01-20"
+    },
+    {
+        "key": "early-grok-3",
+        "Model": "chocolate (Early Grok-3)",
+        "Release Date": "2025-02-12"
+    },
+    {
+        "key": "gemini-2.0-flash-001",
+        "Model": "Gemini-2.0-Flash-001",
+        "Release Date": "2025-02-05"
+    },
+    {
+        "key": "gemini-2.0-flash-lite-preview-02-05",
+        "Model": "Gemini-2.0-Flash-Lite-Preview-02-05",
+        "Release Date": "2025-02-05"
+    },
+    {
+        "key": "gemini-2.0-flash-thinking-exp-01-21",
+        "Model": "Gemini-2.0-Flash-Thinking-Exp-01-21",
+        "Release Date": "2025-01-21"
+    },
+    {
+        "key": "gemini-2.0-pro-exp-02-05",
+        "Model": "Gemini-2.0-Pro-Exp-02-05",
+        "Release Date": "2025-02-05"
+    },
+    {
+        "key": "glm-4-plus-0111",
+        "Model": "GLM-4-Plus-0111",
+        "Release Date": "2025-01-11"
+    },
+    {
+        "key": "granite-3.1-2b-instruct",
+        "Model": "Granite-3.1-2B-Instruct",
+        "Release Date": "2024-12-18"
+    },
+    {
+        "key": "granite-3.1-8b-instruct",
+        "Model": "Granite-3.1-8B-Instruct",
+        "Release Date": "2024-12-18"
+    },
+    {
+        "key": "mistral-small-24b-instruct-2501",
+        "Model": "Mistral-Small-24B-Instruct-2501",
+        "Release Date": "2025-01-30"
+    },
+    {
+        "key": "o3-mini",
+        "Model": "o3-mini",
+        "Release Date": "2025-01-31"
+    },
+    {
+        "key": "o3-mini-high",
+        "Model": "o3-mini-high",
+        "Release Date": "2025-01-31"
+    },
+    {
+        "key": "phi-4",
+        "Model": "Phi-4",
+        "Release Date": "2024-12-12"
+    },
+    {
+        "key": "qwen-plus-0125",
+        "Model": "Qwen-Plus-0125",
+        "Release Date": "2025-01-25"
+    },
+    {
+        "key": "qwen2.5-max",
+        "Model": "Qwen2.5-Max",
+        "Release Date": "2025-01-28"
+    },
+    {
+        "key": "step-2-16k-exp-202412",
+        "Model": "Step-2-16K-Exp",
+        "Release Date": "2025-01-15"
+    },
+    {
+        "key": "gemini-2.5-pro",
+        "Model": "Gemini-2.5-Pro",
+        "Release Date": "2025-06-05"
+    },
+    {
+        "key": "gemini-2.5-pro-preview-05-06",
+        "Model": "Gemini-2.5-Pro-Preview-05-06",
+        "Release Date": "2025-05-06"
+    },
+    {
+        "key": "grok-4-0709",
+        "Model": "Grok-4-0709",
+        "Release Date": "2025-07-09"
+    },
+    {
+        "key": "chatgpt-4o-latest-20250326",
+        "Model": "ChatGPT-4o-latest (2025-03-26)",
+        "Release Date": "2025-03-26"
+    },
+    {
+        "key": "gpt-4.5-preview-2025-02-27",
+        "Model": "GPT-4.5-Preview",
+        "Release Date": "2025-02-27"
+    },
+    {
+        "key": "gemini-2.5-flash",
+        "Model": "Gemini-2.5-Flash",
+        "Release Date": "2025-06-05"
+    },
+    {
+        "key": "gemini-2.5-flash-preview-04-17",
+        "Model": "Gemini-2.5-Flash-Preview-04-17",
+        "Release Date": "2025-04-17"
+    },
+    {
+        "key": "gpt-4.1-2025-04-14",
+        "Model": "GPT-4.1-2025-04-14",
+        "Release Date": "2025-04-14"
+    },
+    {
+        "key": "gpt-4.1-mini-2025-04-14",
+        "Model": "GPT-4.1-mini-2025-04-14",
+        "Release Date": "2025-04-14"
+    },
+    {
+        "key": "gpt-4.1-nano-2025-04-14",
+        "Model": "GPT-4.1-nano-2025-04-14",
+        "Release Date": "2025-04-14"
+    },
+    {
+        "key": "grok-3-preview-02-24",
+        "Model": "Grok-3-Preview-02-24",
+        "Release Date": "2025-02-24"
+    },
+    {
+        "key": "o3-2025-04-16",
+        "Model": "o3-2025-04-16",
+        "Release Date": "2025-04-16"
+    },
+    {
+        "key": "deepseek-r1-0528",
+        "Model": "DeepSeek-R1-0528",
+        "Release Date": "2025-05-28"
+    },
+    {
+        "key": "deepseek-v3-0324",
+        "Model": "DeepSeek-V3-0324",
+        "Release Date": "2025-03-24"
+    },
+    {
+        "key": "o4-mini-2025-04-16",
+        "Model": "o4-mini-2025-04-16",
+        "Release Date": "2025-04-16"
+    },
+    {
+        "key": "claude-opus-4-20250514",
+        "Model": "Claude Opus 4 (20250514)",
+        "Release Date": "2025-05-14"
+    },
+    {
+        "key": "claude-sonnet-4-20250514",
+        "Model": "Claude Sonnet 4 (20250514)",
+        "Release Date": "2025-05-14"
+    },
+    {
+        "key": "claude-opus-4-20250514-thinking-16k",
+        "Model": "Claude Opus 4 (thinking-16k)",
+        "Release Date": "2025-05-14"
+    },
+    {
+        "key": "claude-sonnet-4-20250514-thinking-32k",
+        "Model": "Claude Sonnet 4 (thinking-32k)",
+        "Release Date": "2025-05-14"
+    },
+    {
+        "key": "claude-3-7-sonnet-20250219",
+        "Model": "Claude 3.7 Sonnet",
+        "Release Date": "2025-02-19"
+    },
+    {
+        "key": "claude-3-7-sonnet-20250219-thinking-32k",
+        "Model": "Claude 3.7 Sonnet (thinking-32k)",
+        "Release Date": "2025-02-19"
+    },
+    {
+        "key": "qwen3-235b-a22b-no-thinking",
+        "Model": "Qwen3-235B-A22B-no-thinking",
+        "Release Date": "2025-04-29"
+    },
+    {
+        "key": "qwen3-235b-a22b",
+        "Model": "Qwen3-235B-A22B",
+        "Release Date": "2025-04-29"
+    },
+    {
+        "key": "qwen3-235b-a22b-instruct-2507",
+        "Model": "Qwen3-235B-A22B-Instruct-2507",
+        "Release Date": "2025-07-25"
+    },
+    {
+        "key": "qwen3-32b",
+        "Model": "Qwen3-32B",
+        "Release Date": "2025-04-29"
+    },
+    {
+        "key": "qwen3-30b-a3b",
+        "Model": "Qwen3-30B-A3B",
+        "Release Date": "2025-04-29"
+    },
+    {
+        "key": "hunyuan-turbos-20250416",
+        "Model": "Hunyuan-Turbos-20250416",
+        "Release Date": "2025-04-16"
+    },
+    {
+        "key": "hunyuan-turbos-20250226",
+        "Model": "Hunyuan-TurboS-20250226",
+        "Release Date": "2025-02-26"
+    },
+    {
+        "key": "hunyuan-turbo-0110",
+        "Model": "Hunyuan-Turbo-0110",
+        "Release Date": "2025-01-10"
+    },
+    {
+        "key": "hunyuan-large-2025-02-10",
+        "Model": "Hunyuan-Large-2025-02-10",
+        "Release Date": "2025-02-10"
+    },
+    {
+        "key": "hunyuan-standard-2025-02-10",
+        "Model": "Hunyuan-Standard-2025-02-10",
+        "Release Date": "2025-02-10"
+    },
+    {
+        "key": "hunyuan-large-vision",
+        "Model": "Hunyuan-Large-Vision",
+        "Release Date": "2025-02-10"
+    },
+    {
+        "key": "llama-4-maverick-03-26-experimental",
+        "Model": "Llama-4-Maverick-03-26-Experimental",
+        "Release Date": "2025-03-26"
+    },
+    {
+        "key": "llama-4-maverick-17b-128e-instruct",
+        "Model": "Llama-4-Maverick-17B-128E-Instruct",
+        "Release Date": "2025-04-05"
+    },
+    {
+        "key": "llama-4-scout-17b-16e-instruct",
+        "Model": "Llama-4-Scout-17B-16E-Instruct",
+        "Release Date": "2025-04-05"
+    },
+    {
+        "key": "kimi-k2-0711-preview",
+        "Model": "kimi-k2-0711-preview",
+        "Release Date": "2025-07-11"
+    },
+    {
+        "key": "mistral-medium-2505",
+        "Model": "Mistral Medium 3",
+        "Release Date": "2025-05-25"
+    },
+    {
+        "key": "mistral-small-2506",
+        "Model": "Mistral-Small-2506",
+        "Release Date": "2025-06-25"
+    },
+    {
+        "key": "gemma-3-27b-it",
+        "Model": "Gemma-3-27B-it",
+        "Release Date": "2025-03-12"
+    },
+    {
+        "key": "gemma-3-12b-it",
+        "Model": "Gemma-3-12B-it",
+        "Release Date": "2025-03-12"
+    },
+    {
+        "key": "gemma-3-4b-it",
+        "Model": "Gemma-3-4B-it",
+        "Release Date": "2025-03-12"
+    },
+    {
+        "key": "gemma-3n-e4b-it",
+        "Model": "Gemma-3n-e4b-it",
+        "Release Date": "2025-03-12"
+    },
+    {
+        "key": "minimax-m1",
+        "Model": "Minimax-M1",
+        "Release Date": "2025-06-16"
+    },
+    {
+        "key": "qwq-32b",
+        "Model": "QwQ-32B",
+        "Release Date": "2025-04-29"
+    },
+    {
+        "key": "mistral-small-3.1-24b-instruct-2503",
+        "Model": "Mistral-Small-3.1-24B-Instruct-2503",
+        "Release Date": "2025-03-25"
+    },
+    {
+        "key": "magistral-medium-2506",
+        "Model": "magistral-medium-2506",
+        "Release Date": "2025-06-25"
+    },
+    {
+        "key": "grok-3-mini-beta",
+        "Model": "Grok-3-Mini-beta",
+        "Release Date": "2025-02-24"
+    },
+    {
+        "key": "grok-3-mini-high",
+        "Model": "Grok-3-mini-high",
+        "Release Date": "2025-02-24"
+    },
+    {
+        "key": "command-a-03-2025",
+        "Model": "Command A (03-2025)",
+        "Release Date": "2025-03-01"
+    },
+    {
+        "key": "amazon-nova-experimental-chat-05-14",
+        "Model": "Amazon-Nova-Experimental-Chat-05-14",
+        "Release Date": "2025-05-14"
     }
 ]
