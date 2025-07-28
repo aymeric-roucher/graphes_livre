@@ -1,0 +1,6 @@
+pyproject.toml
+graphes_livre.egg-info/PKG-INFO
+graphes_livre.egg-info/SOURCES.txt
+graphes_livre.egg-info/dependency_links.txt
+graphes_livre.egg-info/requires.txt
+graphes_livre.egg-info/top_level.txt

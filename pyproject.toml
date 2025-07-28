@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graphes_livre"
+version = "0.1.0"
+description = "Graph utilities for data visualization"
+requires-python = ">=3.8"
+dependencies = [
+    "matplotlib",
+    "plotly",
+    "pandas",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
