@@ -193,18 +193,19 @@ def main():
     merged_dfs = {k: format_data(v) for k, v in merged_dfs.items()}
 
     # get constants
-    min_elo_score, max_elo_score = get_constants(merged_dfs)
-    date_updated = str(elo_results["full"]["last_updated_datetime"]).split(" ")[0]
-    orgs = merged_dfs["Overall"].Organization.unique().tolist()
-
     df = merged_dfs["Overall"]
 
-    top_orgs = df.groupby("Organization")["rating"].max().nlargest(11).index.tolist()
-    top_orgs = [el for el in top_orgs if el not in ["NexusFlow", "Princeton", "Nvidia"]]
+    top_orgs = df.groupby("Organization")["rating"].max().nlargest(13).index.tolist()
+    print(top_orgs)
+    top_orgs = [
+        el
+        for el in top_orgs
+        if el not in ["NexusFlow", "Princeton", "Nvidia", "MiniMax", "Zhipu"]
+    ]
 
     df = df.loc[(df["Organization"].isin(top_orgs)) & (df["rating"] > 1000)]
     print("Missing release dates:")
-    print(df.loc[df["Release Date"].isna()])
+    print(df.loc[df["Release Date"].isna()][["rating", "key", "Model"]])
 
     df = df.loc[~df["Release Date"].isna()]
 
@@ -213,9 +214,14 @@ def main():
 
     # Sort the DataFrame by Release Date and rating (descending)
     df = df.sort_values(["Release Date", "rating"], ascending=[True, False])
+    df = df.loc[
+        ~df["Model"]
+        .str.lower()
+        .apply(lambda x: "early" in x or "preview" in x or "experimental" in x)
+    ]
 
-    # Define the current date (October 3, 2024)
-    current_date = pd.Timestamp("2025-01-31")
+    # Define the current date
+    current_date = pd.Timestamp(year=2025, month=7, day=15)
 
     # Define organization to country mapping and colors
     org_info = {
@@ -232,6 +238,11 @@ def main():
         "AI21 Labs": ("#1E90FF", "🇮🇱"),  # Dodger Blue,
         "Reka AI": ("#FFC300", "🇺🇸"),
         "Zhipu AI": ("#FFC300", "🇨🇳"),
+        "Moonshot": ("#000000", "🇨🇳"),
+        "Qwen": ("#000000", "🇨🇳"),
+        "Tencent": ("#BBBBBB", "🇨🇳"),
+        "MiniMax": ("#000000", "🇨🇳"),
+        "Cohere": ("#d9a6e5", "🇨🇦"),
     }
 
     # Create figure
@@ -252,7 +263,29 @@ def main():
             best_models = []
 
             # Group by date and get the best model for each date
-            daily_best = org_data.groupby("Release Date").first().reset_index()
+            daily_best = (
+                org_data.sort_values("rating", ascending=False)
+                .groupby("Release Date")
+                .first()
+                .reset_index()
+            )
+
+            # Filter out updates less than N days apart, keeping only the later one
+            filtered_best = []
+            for _, row in daily_best.iterrows():
+                if not filtered_best:
+                    filtered_best.append(row)
+                else:
+                    days_diff = (
+                        row["Release Date"] - filtered_best[-1]["Release Date"]
+                    ).days
+                    if days_diff >= 20:
+                        filtered_best.append(row)
+                    else:
+                        # Replace the previous entry with the later one
+                        filtered_best[-1] = row
+
+            daily_best = pd.DataFrame(filtered_best)
 
             for _, row in daily_best.iterrows():
                 if row["rating"] > current_best:
@@ -317,13 +350,13 @@ def main():
     fig.update_layout(
         xaxis_title="Date",
         yaxis_title="Score ELO",
-        legend_title="Classement en Janvier 24",
+        # legend_title="Classement en Janvier 24",
         hovermode="closest",
         xaxis_range=[
             pd.Timestamp("2024-01-01"),
             current_date,
         ],  # Extend x-axis for labels
-        yaxis_range=[1103, 1400],
+        yaxis_range=[1151, 1500],
     )
     apply_template(fig, width=800, height=500)
 
