@@ -1,0 +1,1 @@
+Le .fig est un fichier source figma.
