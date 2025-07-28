@@ -2,7 +2,7 @@ import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from graphes_livre import SEA_BLUE, apply_template
+from graphes_livre import SEA_BLUE, apply_template, get_output_path
 
 
 def create_s_curve():
@@ -240,4 +240,4 @@ fig.update_yaxes(
 fig.update_xaxes(range=[0, 8.7])
 apply_template(fig, width=600, height=600)
 
-fig.write_html("17_progres_ia.html")
+fig.write_html(get_output_path("html"))
