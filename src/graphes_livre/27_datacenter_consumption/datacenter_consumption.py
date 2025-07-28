@@ -54,7 +54,7 @@ fig.add_shape(
 fig.add_annotation(
     x=2008,  # Place annotation at the end of x-axis
     y=ITALY_CONSUMPTION + 10,
-    text="Consommation de l'Italie",
+    text="Consommation électrique annuelle de l'Italie",
     # xshift=20,  # Shift label slightly to the right
     showarrow=False,
     yanchor="middle",
