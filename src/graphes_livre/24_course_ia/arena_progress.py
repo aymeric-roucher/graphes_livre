@@ -208,6 +208,10 @@ def main():
         for el in top_orgs
         if el not in ["NexusFlow", "Princeton", "Nvidia", "MiniMax", "Zhipu"]
     ]
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7542881afc3ea8af157b8a7f81fb6b0980037bc7
     df = df.loc[(df["Organization"].isin(top_orgs)) & (df["rating"] > 1000)]
     if USE_CONTINENTS:
         df["Organization"] = df["Organization"].map(
