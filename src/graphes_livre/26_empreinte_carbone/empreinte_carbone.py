@@ -1,7 +1,8 @@
 # the embodied energy of the server per query is 0.03 g CO2e
 import pandas as pd
 import plotly.express as px
-from utils import SEA_BLUE, apply_template, get_output_path
+
+from graphes_livre import SEA_BLUE, apply_template, get_output_path
 
 duration_hours = 0.8
 chatgpt_query_g = 3

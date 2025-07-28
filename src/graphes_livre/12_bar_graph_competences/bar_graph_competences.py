@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from utils import apply_template_matplotlib, get_output_path
+from graphes_livre import apply_template_matplotlib, get_output_path
 
 domaines = [
     "Calcul",

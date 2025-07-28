@@ -1,7 +1,8 @@
 import pandas as pd
 import plotly.express as px
-from graphs.utils import apply_template, SEA_BLUE
+
 import numpy as np
+from graphes_livre import apply_template, get_output_path, SEA_BLUE
 
 # Source: https://www.singularity.com/charts/page67.html
 
@@ -122,5 +123,4 @@ fig.update_layout(
 fig.update_yaxes(dtick=3, tickformat=".0e")
 fig.update_xaxes(title="")
 # Show the plot
-fig.show()
-fig.write_html("moore.html")
+fig.write_html(get_output_path("html"))

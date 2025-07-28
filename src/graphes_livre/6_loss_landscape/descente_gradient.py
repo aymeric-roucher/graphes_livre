@@ -1,7 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from utils import get_output_path
+import numpy as np
+
+from graphes_livre import get_output_path
 
 
 def multivariate_gaussian(x, y, mx, my, sx, sy):

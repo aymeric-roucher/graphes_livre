@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-from utils import apply_template
+from graphes_livre import apply_template, get_output_path
 
 datacenter_consumption = {
     2000: 13.95147313691507,
@@ -64,4 +64,4 @@ fig.update_xaxes(
     dtick=4,  # Show tick every 4 years
 )
 
-fig.show()
+fig.write_html(get_output_path("html"))

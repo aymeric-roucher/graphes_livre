@@ -4,7 +4,7 @@
 
 import pandas as pd
 import plotly.express as px
-from utils import apply_template, get_output_path
+from graphes_livre import apply_template, get_output_path
 
 BEGIN_YEAR = 1900
 

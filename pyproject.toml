@@ -11,6 +11,7 @@ dependencies = [
     "matplotlib",
     "plotly",
     "pandas",
+    "geopandas",
 ]
 
 [tool.setuptools.packages.find]
