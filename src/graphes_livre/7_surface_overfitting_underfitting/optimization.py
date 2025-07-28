@@ -193,7 +193,7 @@ def main():
             losses.append(loss.item())
 
     plt.plot(losses)
-    plt.show()
+    plt.savefig(get_output_path("png").replace(".png", "_loss.png"))
 
     # Set the same camera view and aspect ratio
     camera = dict(eye=dict(x=0.2, y=-2, z=1))
@@ -242,7 +242,7 @@ def main():
         width=900,
     )
 
-    fig1.show()
+    fig1.write_html(get_output_path("html").replace(".html", "_points.html"))
     objectif_path = get_output_path("png")
     fig1.write_image(objectif_path, scale=6)
     crop_to_half_size(objectif_path, objectif_path, margin_sides=300, margin_top=200)

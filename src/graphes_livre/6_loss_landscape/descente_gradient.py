@@ -57,8 +57,6 @@ def plot_3d_landscape():
     ax.view_init(elev=20, azim=165)
     plt.savefig(get_output_path("png"), dpi=300, bbox_inches="tight", transparent=True)
 
-    plt.show()
-
 
 # Generate and display the plot
 plot_3d_landscape()

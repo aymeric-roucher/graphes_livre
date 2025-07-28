@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+
 from graphes_livre import apply_template_matplotlib, get_output_path
 
 domaines = [
@@ -54,4 +55,3 @@ apply_template_matplotlib(fig, width=6, height=6, font_size=10)
 plt.tight_layout()
 # plt.subplots_adjust(right=0.85)
 plt.savefig(get_output_path("png"), dpi=200)
-plt.show()

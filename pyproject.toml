@@ -12,6 +12,7 @@ dependencies = [
     "plotly",
     "pandas",
     "geopandas",
+    "torch"
 ]
 
 [tool.setuptools.packages.find]
