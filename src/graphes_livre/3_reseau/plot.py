@@ -228,4 +228,4 @@ def create_neural_network_visualization(
 
 nn_viz = create_neural_network_visualization()
 nn_viz.tight_layout()
-plt.savefig(get_output_path("jpg"), dpi=500)
+plt.savefig(get_output_path("jpg"), dpi=800)
