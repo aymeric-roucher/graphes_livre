@@ -2,6 +2,7 @@
 
 import pandas as pd
 import plotly.express as px
+
 from graphes_livre import apply_template, get_output_path
 
 BEGIN_YEAR = 1900
@@ -29,7 +30,13 @@ fig = px.line(
 
 apply_template(fig)
 # Update layout
-fig.update_layout(width=700, height=450, showlegend=False, xaxis_title=None)
+fig.update_layout(
+    width=700,
+    height=450,
+    showlegend=False,
+    xaxis_title=None,
+    margin=dict(l=60, r=40, t=40, b=40),
+)
 fig.update_yaxes(
     title="Nombre d'employés (millions)",
     range=[0, 18],

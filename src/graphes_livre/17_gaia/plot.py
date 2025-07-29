@@ -132,9 +132,8 @@ def plot_gaia_time_law():
             mode="markers",
             name="Performance du meilleur agent",
             marker=dict(
-                size=12,
-                color="rgba(0,100,255,1.0)",  # Solid blue instead of semi-transparent
-                line=dict(color="navy", width=1),
+                size=10,
+                color=SEA_BLUE,
                 symbol="circle",
             ),
             showlegend=False,
@@ -198,7 +197,6 @@ def plot_gaia_time_law():
     apply_template(fig, width=600, height=500)
     # fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     fig.write_html(get_output_path("html"))
-    fig.write_image(get_output_path("jpg"), width=600, height=500, scale=4)
 
 
 if __name__ == "__main__":

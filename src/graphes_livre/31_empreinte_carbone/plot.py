@@ -81,6 +81,7 @@ fig.update_layout(
     height=450,
     yaxis_title=title_emissions,
     bargap=0.5,  # Makes bars thinner by increasing gap between them
+    margin=dict(l=60, r=20, t=20, b=50),
 )
 fig.update_xaxes(title=None)
 fig.update_yaxes(

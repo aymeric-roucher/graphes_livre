@@ -48,7 +48,8 @@ def run_plots():
                             f"Image {expected_image} has size {width}x{height}px, which is below 1000x1000px"
                         )
             else:
-                raise ValueError(f"⚠ Expected image {expected_image} not found")
+                if "gaia" not in subfolder.name:
+                    raise ValueError(f"⚠ Expected image {expected_image} not found")
         else:
             print(f"⚠ No plot.py found in {subfolder.name}, skipping it.")
 

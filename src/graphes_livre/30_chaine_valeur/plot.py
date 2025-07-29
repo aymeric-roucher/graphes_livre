@@ -19,7 +19,7 @@ data = {
     "États-Unis": [67, 28, 37, 42, 10, 11, 5, 35],
     "Europe": [8, 0, 18, 21, 6, 9, 4, 10],
     "Chine": [6, 0, 9, 0, 19, 21, 38, 11],
-    "Corée du S.": [4, 58, 6, 3, 17, 17, 9, 16],
+    "Corée du Sud": [4, 58, 6, 3, 17, 17, 9, 16],
     "Japon": [4, 8, 21, 27, 14, 16, 6, 13],
     "Taïwan": [9, 4, 4, 0, 23, 19, 19, 10],
 }
@@ -31,7 +31,7 @@ df = df.drop(index=[2])
 df_chart = df.copy()
 
 # Define colors using Plotly qualitative palette
-regions = ["États-Unis", "Europe", "Chine", "Corée du S.", "Japon", "Taïwan"]
+regions = ["États-Unis", "Europe", "Chine", "Corée du Sud", "Japon", "Taïwan"]
 colors = dict(zip(regions, px.colors.qualitative.Plotly))
 
 # Create the stacked horizontal bar chart
@@ -64,7 +64,7 @@ fig.update_layout(
         itemwidth=60,  # Increased spacing between items to prevent cutoff
         tracegroupgap=10,  # Gap between groups
     ),
-    margin=dict(l=300, r=50, t=100, b=50),  # Increased top margin for legend
+    margin=dict(l=250, r=20, t=60, b=30),  # Increased top margin for legend
 )
 
 # Update x-axis

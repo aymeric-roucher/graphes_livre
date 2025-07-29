@@ -1,9 +1,9 @@
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
 import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
 from scipy import stats
-from graphes_livre import apply_template, get_output_path
+
+from graphes_livre import SEA_BLUE, apply_template, get_output_path
 
 BEGIN_YEAR = 1965
 
@@ -40,8 +40,6 @@ df = df.loc[df["year"] >= 1980]
 PLOT_ENGLISH = False
 
 if PLOT_ENGLISH:
-
-
     # Assuming df is your existing dataframe
     # Make sure df is sorted by year
     df = df.sort_values("year")
@@ -53,11 +51,14 @@ if PLOT_ENGLISH:
     fig = go.Figure(
         go.Scatter(
             x=df[x_column] / 1e12,  # Convert to trillions (billions in French)
-            y=df[y_column] / 1e9,   # Convert to billions of tonnes
+            y=df[y_column] / 1e9,  # Convert to billions of tonnes
             mode="lines+markers",  # This tells Plotly to draw both lines and markers
             line=dict(color="black", width=2),
             marker=dict(
-                color="black", size=5, symbol="circle", line=dict(color="black", width=2)
+                color="black",
+                size=5,
+                symbol="circle",
+                line=dict(color="black", width=2),
             ),
             showlegend=False,
         )
@@ -115,12 +116,10 @@ co2 = co2.reset_index().set_index("Year").sort_index()
 fig = go.Figure(
     go.Scatter(
         x=co2[gdp_name] / 1e12,  # Convert to trillions (billions in French)
-        y=co2[co2_name] / 1e9,   # Convert to billions of tonnes
+        y=co2[co2_name] / 1e9,  # Convert to billions of tonnes
         mode="lines+markers",  # This tells Plotly to draw both lines and markers
-        line=dict(color="black", width=2),
-        marker=dict(
-            color="black", size=5, symbol="circle", line=dict(color="black", width=2)
-        ),
+        line=dict(color=SEA_BLUE, width=2),
+        marker=dict(color=SEA_BLUE, size=5, symbol="circle"),
         showlegend=False,
     )
 )
@@ -138,9 +137,9 @@ fig.add_trace(
         x=line_x,
         y=line_y,
         name="Ligne X = Y",
-        line=dict(color="black", dash="dash"),
+        line=dict(color="gray", dash="dash"),
         showlegend=False,
-        mode="lines+markers",
+        mode="lines",
     )
 )
 
@@ -153,13 +152,16 @@ for year in years_to_annotate:
         x=year_data[gdp_name] / 1e12,
         y=year_data[co2_name] / 1e9,
         text=f"{year:.0f}",
-        yshift=30,
+        xshift=0,
+        yshift=0,
         showarrow=False,
-        font=dict(size=14, color="grey", weight="bold"),
+        font=dict(size=14),
+        xanchor="left",
+        yanchor="top",
     )
-fig.update_layout(width=700, height=600)
-fig.update_xaxes(title="PIB mondial (billions de dollars)")
-fig.update_yaxes(title="Emissions mondiales de CO2e (Gt)")
+fig.update_layout(width=600, height=500, margin=dict(l=50, r=40, t=40, b=50))
+fig.update_xaxes(title="PIB mondial (billions de dollars)", title_font=dict(size=17))
+fig.update_yaxes(title="Emissions mondiales de CO2e (Gt)", title_font=dict(size=17))
 
 # Show the plot
-fig.write_image(get_output_path("jpg"), width=700, height=600, scale=4)
+fig.write_image(get_output_path("jpg"), width=600, height=500, scale=4)

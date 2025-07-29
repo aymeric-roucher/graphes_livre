@@ -37,7 +37,7 @@ fig = px.line(datacenter_consumption, x="Année", y="Consommation (TWh)")
 fig.update_traces(line_color=SEA_BLUE)
 apply_template(fig)
 
-fig.update_layout(width=500)
+fig.update_layout(margin=dict(l=60, r=20, t=20, b=50))
 
 ITALY_CONSUMPTION = 306
 # Add horizontal line for Italy's consumption
@@ -52,18 +52,19 @@ fig.add_shape(
 
 # Add annotation for Italy
 fig.add_annotation(
-    x=2008,  # Place annotation at the end of x-axis
-    y=ITALY_CONSUMPTION + 10,
+    x=2004,
+    y=ITALY_CONSUMPTION + 1,
     text="Consommation électrique annuelle de l'Italie",
-    # xshift=20,  # Shift label slightly to the right
     showarrow=False,
-    yanchor="middle",
-    font=dict(color="gray", style="italic"),
+    yanchor="bottom",
+    xanchor="left",
+    font=dict(color="gray", style="italic", size=15),
 )
 fig.update_xaxes(
     range=[2000, 2024],
     tick0=2000,
     dtick=4,
 )
+fig.update_yaxes(range=[1, 355])
 
-fig.write_image(get_output_path("jpg"), width=500, height=400, scale=4)
+fig.write_image(get_output_path("jpg"), width=550, height=450, scale=4)
