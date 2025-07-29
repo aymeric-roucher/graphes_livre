@@ -163,13 +163,13 @@ def main():
 
     # Define the loss function and optimizer
     criterion = nn.BCELoss()  # Binary Cross Entropy Loss
-    learning_rate = 5e-4
+    learning_rate = 1e-4
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     # Training loop
-    num_epochs = 50000
+    num_epochs = 100000
     lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-        optimizer, T_max=num_epochs, eta_min=learning_rate / 10, last_epoch=-1
+        optimizer, T_max=num_epochs, eta_min=learning_rate / 5, last_epoch=-1
     )
     pbar = tqdm(range(num_epochs))
     losses = []
@@ -259,7 +259,9 @@ def main():
     scene_config["zaxis"]["title"] = "Prédiction"
 
     dictionnaire_fonctions = {
-        "neural_net": lambda lon_grid, lat_grid: neural_net(lon_grid, lat_grid, model),
+        "reseau_neuronal": lambda lon_grid, lat_grid: neural_net(
+            lon_grid, lat_grid, model
+        ),
         "underfitting": underfitting_gaussian,
         "overfitting": overfitting_nearest_neightbor,
     }
