@@ -51,7 +51,8 @@ def main():
             tickfont_size=12,
         ),
     )
-    fig.write_image(get_output_path("jpg"), width=800, height=600, scale=4)
+    fig.update_layout(margin=dict(l=60, r=40, t=40, b=40))
+    fig.write_image(get_output_path("jpg"), width=700, height=550, scale=4)
 
 
 if __name__ == "__main__":

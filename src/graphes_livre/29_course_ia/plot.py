@@ -208,10 +208,6 @@ def main():
         for el in top_orgs
         if el not in ["NexusFlow", "Princeton", "Nvidia", "MiniMax", "Zhipu"]
     ]
-<<<<<<< HEAD
-=======
-
->>>>>>> 7542881afc3ea8af157b8a7f81fb6b0980037bc7
     df = df.loc[(df["Organization"].isin(top_orgs)) & (df["rating"] > 1000)]
     if USE_CONTINENTS:
         df["Organization"] = df["Organization"].map(
@@ -414,6 +410,7 @@ def main():
         tickformat="%m-%Y",
         range=[pd.Timestamp("2024-01-01"), current_date + pd.Timedelta(days=10)],
     )
+    fig.update_layout(margin=dict(l=70, r=90, t=20, b=50))
     fig.write_image(get_output_path("jpg"), width=700, height=500, scale=4)
 
 

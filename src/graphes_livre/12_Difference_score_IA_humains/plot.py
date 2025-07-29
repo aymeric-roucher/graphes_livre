@@ -31,7 +31,7 @@ data = {
         2022,
         2023,
     ],
-    "Compréhension de lecture avancée (SQuAD2.0)": [
+    "Compréhension de lecture (SQuAD2.0)": [
         None,
         None,
         None,
@@ -115,7 +115,7 @@ data = {
         15.67,
         None,
     ],
-    "Interprétation nuancée du langage (SuperGLUE)": [
+    "Interprétation du langage (SuperGLUE)": [
         None,
         None,
         None,
@@ -199,7 +199,7 @@ data = {
         -30.6,
         -0.6,
     ],
-    "Tests de connaissances générales (MMLU)": [
+    "Connaissances générales (MMLU)": [
         None,
         None,
         None,
@@ -220,7 +220,7 @@ data = {
         -22.5,
         -5.2,
     ],
-    "Résolution de problèmes mathématiques (GSM8K)": [
+    "Problèmes mathématiques (GSM8K)": [
         None,
         None,
         None,
@@ -306,6 +306,6 @@ fig = px.line(
 # Update layout
 fig.update_yaxes(title="Différence de score (%)")
 # Show the plot
-apply_template(fig, width=2000, height=400)
+apply_template(fig)
 
-fig.write_image(get_output_path("jpg"), width=2000, height=400, scale=4)
+fig.write_image(get_output_path("jpg"), width=900, height=500, scale=4)

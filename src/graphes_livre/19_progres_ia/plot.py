@@ -239,5 +239,7 @@ fig.update_yaxes(
 # fig.update_yaxes(showticklabels=False, showgrid=False,title_text="Vitesse perçue", title_standoff=5, row=2, col=1, range=[0, 2.3])
 fig.update_xaxes(range=[0, 8.7])
 apply_template(fig, width=600, height=600)
+fig.update_layout(margin=dict(l=40, r=40, t=40, b=40))
+
 
 fig.write_image(get_output_path("jpg"), width=600, height=600, scale=4)

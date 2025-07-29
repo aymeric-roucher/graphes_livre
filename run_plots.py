@@ -5,6 +5,7 @@ import warnings
 from pathlib import Path
 
 from PIL import Image
+from tqdm import tqdm
 
 
 def run_plots():
@@ -16,25 +17,24 @@ def run_plots():
     # Ensure figures directory exists
     figures_dir.mkdir(exist_ok=True)
 
+    print("Running plots...")
+
     # Get all subdirectories in src/graphes_livre
-    for subfolder in sorted(src_dir.iterdir()):
+    for subfolder in tqdm(sorted(src_dir.iterdir())):
         if not subfolder.is_dir() or subfolder.name.startswith("__"):
             continue
 
         plot_file = subfolder / "plot.py"
 
         if plot_file.exists():
-            print(f"Running plot.py in {subfolder.name}...")
-
             # Run the plot.py file
-            result = subprocess.run(
+            subprocess.run(
                 ["uv", "run", str(plot_file)],
-                cwd=subfolder,
+                # Do not set cwd, so the script runs in the current working directory
                 check=True,
                 capture_output=True,
                 text=True,
             )
-            print(f"✓ Successfully ran {subfolder.name}/plot.py")
 
             # Check generated image size
             expected_image = figures_dir / f"{subfolder.name}.jpg"
@@ -47,12 +47,10 @@ def run_plots():
                         warnings.warn(
                             f"Image {expected_image} has size {width}x{height}px, which is below 1000x1000px"
                         )
-                    else:
-                        print(f"✓ Image {expected_image} size: {width}x{height}px")
             else:
-                print(f"⚠ Expected image {expected_image} not found")
+                raise ValueError(f"⚠ Expected image {expected_image} not found")
         else:
-            print(f"⚠ No plot.py found in {subfolder.name}")
+            print(f"⚠ No plot.py found in {subfolder.name}, skipping it.")
 
 
 if __name__ == "__main__":

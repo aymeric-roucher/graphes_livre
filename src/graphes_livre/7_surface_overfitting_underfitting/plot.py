@@ -1,5 +1,4 @@
 import geopandas as gpd
-import matplotlib.pyplot as plt
 import numpy as np
 import plotly.graph_objs as go
 import torch
@@ -168,7 +167,7 @@ def main():
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     # Training loop
-    num_epochs = 100000
+    num_epochs = 50000
     lr_scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer, T_max=num_epochs, eta_min=learning_rate / 10, last_epoch=-1
     )
@@ -192,8 +191,7 @@ def main():
             )
             losses.append(loss.item())
 
-    plt.plot(losses)
-    plt.savefig(get_output_path("png").replace(".png", "_loss.png"))
+    # plt.plot(losses)
 
     # Set the same camera view and aspect ratio
     camera = dict(eye=dict(x=0.2, y=-2, z=1))
@@ -242,9 +240,8 @@ def main():
         width=900,
     )
 
-    fig1.write_html(get_output_path("html").replace(".html", "_points.html"))
-    objectif_path = get_output_path("png")
-    fig1.write_image(objectif_path, scale=6)
+    objectif_path = get_output_path("jpg").replace(".jpg", "_objectif.jpg")
+    fig1.write_image(objectif_path, scale=6, width=900, height=700)
     crop_to_half_size(objectif_path, objectif_path, margin_sides=300, margin_top=200)
 
     # Generate grid data for latitude and longitude
@@ -287,14 +284,11 @@ def main():
         fig.add_trace(surface)
 
         fig.update_layout(scene=scene_config, height=700, width=900)
-        surface_path = get_output_path("png")
+        surface_path = get_output_path("jpg")
         # For multiple files, we need to create unique names
-        surface_path = surface_path.replace(".png", f"_surface_{name}.png")
-        fig.write_image(surface_path, scale=6, engine="kaleido")
+        surface_path = surface_path.replace(".jpg", f"_surface_{name}.jpg")
+        fig.write_image(surface_path, scale=6)
         crop_to_half_size(surface_path, surface_path, margin_sides=300, margin_top=200)
-
-        print(f"Figure for {name}:")
-        fig.write_html(get_output_path("html").replace(".html", f"_{name}.html"))
 
 
 if __name__ == "__main__":

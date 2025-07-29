@@ -55,7 +55,8 @@ def plot_3d_landscape():
 
     # Adjust viewing angle for better visualization
     ax.view_init(elev=20, azim=165)
-    plt.savefig(get_output_path("png"), dpi=300, bbox_inches="tight", transparent=True)
+    plt.tight_layout()
+    plt.savefig(get_output_path("jpg"), dpi=500, bbox_inches="tight", transparent=True)
 
 
 # Generate and display the plot

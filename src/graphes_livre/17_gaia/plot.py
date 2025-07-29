@@ -68,29 +68,6 @@ def compute_scaling_law():
     fig.write_image(get_output_path("jpg"), width=800, height=600, scale=4)
 
 
-def compute_calculations():
-    throughput = 400 * 1e12  # 400 TFLOPs, given by Karpathy
-    hours_llama3_405 = 39.3 * 1e6
-    hours_in_year = 24 * 365.25
-    GROWTH = 1e5
-
-    print("Calculation 1:", hours_llama3_405 / hours_in_year * GROWTH / 1e6)
-    print("Calculation 2:", 10**0.15)
-
-    sales = [2]
-    for year in range(2025, 2031):
-        sales.append(sales[-1] * 2.3)
-    print("Sales projection 1:", sum(sales))
-
-    sales = [2]
-    for year in range(2025, 2031):
-        sales.append(sales[-1] * 1.6 * 10**0.15)
-    print("Sales projection 2:", sum(sales))
-
-    print("Log calculation 1:", np.log(450 / 2) / np.log(3))
-    print("Log calculation 2:", np.log(450 / 2) / np.log(3 + 10**0.15))
-
-
 def plot_gaia_time_law():
     data = pd.DataFrame(
         [
@@ -147,6 +124,23 @@ def plot_gaia_time_law():
         )
     )
 
+    # Add the data points RIGHT AFTER the curve
+    fig.add_trace(
+        go.Scatter(
+            x=data["date"],
+            y=data["score"],
+            mode="markers",
+            name="Performance du meilleur agent",
+            marker=dict(
+                size=12,
+                color="rgba(0,100,255,1.0)",  # Solid blue instead of semi-transparent
+                line=dict(color="navy", width=1),
+                symbol="circle",
+            ),
+            showlegend=False,
+        )
+    )
+
     # Add a horizontal dashed black line at y=92%
     fig.add_trace(
         go.Scatter(
@@ -159,13 +153,12 @@ def plot_gaia_time_law():
         )
     )
 
-    # Add the 92% intersection point
+    # Add the line text
     fig.add_trace(
         go.Scatter(
             x=[2025],
             y=[93],
             mode="text",
-            name="Atteinte des 92%",
             marker=dict(size=10, color="black", symbol="square"),
             text=["Performance humaine: 92%"],
             textposition="top center",
@@ -173,20 +166,9 @@ def plot_gaia_time_law():
             showlegend=False,
         )
     )
-    # Add the data points
-    fig.add_trace(
-        go.Scatter(
-            x=data["date"],
-            y=data["score"],
-            mode="markers",
-            name="Performance du meilleur agent",
-            text=data["model"],
-            textposition="top center",
-            marker=dict(size=12, color=SEA_BLUE),
-            textfont=dict(size=11),
-            showlegend=False,
-        )
-    )
+    print(data)
+    print("Date range in data:", data["date"].min(), "to", data["date"].max())
+    print("Score range in data:", data["score"].min(), "to", data["score"].max())
 
     x_years = [2024, 2025, 2026]
     x_ticks = [datetime(year, 1, 1) for year in x_years]
@@ -197,7 +179,7 @@ def plot_gaia_time_law():
         yaxis_title=dict(text="Score", font_weight="bold"),
         yaxis=dict(range=[0, 101], tickformat=",d"),
         xaxis=dict(
-            range=[datetime(2023, 7, 15), datetime(2026, 10, 31)],
+            range=[datetime(2024, 1, 1), datetime(2026, 10, 31)],
             tickvals=x_ticks,
             tickformat="%Y",
         ),
@@ -214,20 +196,10 @@ def plot_gaia_time_law():
         gridcolor="LightGrey",
     )
     apply_template(fig, width=600, height=500)
-
+    # fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+    fig.write_html(get_output_path("html"))
     fig.write_image(get_output_path("jpg"), width=600, height=500, scale=4)
 
 
-def main():
-    # print("Computing scaling law...")
-    # compute_scaling_law()
-
-    print("\nComputing calculations...")
-    compute_calculations()
-
-    print("\nPlotting GAIA time law...")
-    plot_gaia_time_law()
-
-
 if __name__ == "__main__":
-    main()
+    plot_gaia_time_law()

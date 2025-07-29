@@ -130,7 +130,7 @@ def main():
         margin=dict(l=20, r=20, t=100, b=100),
     )
 
-    annotation_x, annotation_y = 0.17, 0.20
+    annotation_x, annotation_y = 0.05, 0.20
     font_size = 16
     # Add custom legend
     fig.add_annotation(
@@ -170,7 +170,8 @@ def main():
     )
 
     # Show the map
-    fig.write_image(get_output_path("jpg"), width=1200, height=700, scale=4)
+    fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+    fig.write_image(get_output_path("jpg"), width=900, height=600, scale=4)
 
 
 if __name__ == "__main__":

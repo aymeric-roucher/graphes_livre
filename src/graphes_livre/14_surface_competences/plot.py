@@ -1,5 +1,6 @@
 import numpy as np
 import plotly.graph_objects as go
+from PIL import Image
 
 from graphes_livre import get_output_path
 
@@ -192,29 +193,45 @@ fig.add_trace(
         name="Compétences",
     )
 )
-
-fig.update_layout(
-    title="Compétences en IA",
-    scene=dict(
-        xaxis_title="",
-        yaxis_title="",
-        zaxis_title="Performance",
-        xaxis=dict(showticklabels=False, showgrid=False, showbackground=False),
-        yaxis=dict(showticklabels=False, showgrid=False, showbackground=False),
-        zaxis=dict(
-            showticklabels=True,
-            showgrid=False,
-            showbackground=True,
-            tickvals=[0, 3],
-            ticktext=["Basse", "Haute"],
-            title=dict(text="Performance", font=dict(size=14)),
-            range=[0, 3],
-        ),
-        camera=dict(eye=dict(x=1.5, y=1.5, z=1.2)),
+camera = dict(eye=dict(x=1.6, y=1.5, z=0.8))
+scene_config = dict(
+    xaxis_title="",
+    yaxis_title="",
+    zaxis_title="",
+    xaxis=dict(showticklabels=False, showgrid=False, showbackground=False),
+    yaxis=dict(showticklabels=False, showgrid=False, showbackground=False),
+    zaxis=dict(
+        showticklabels=True,
+        showgrid=False,
+        showbackground=True,
+        tickvals=[0, 3],
+        ticktext=["Basse<br>performance", "Haute<br>performance"],
+        tickfont=dict(size=12, color="gray"),
+        # title=dict(text="Performance", font=dict(size=14, color="gray")),
+        range=[0, 3],
     ),
-    width=1000,
-    height=700,
+)
+fig.update_layout(
+    scene=scene_config,
+    scene_camera=camera,
+    margin=dict(l=10, r=10, t=10, b=10),
+)
+
+fig.write_image(
+    get_output_path("jpg"),
+    width=900,
+    height=500,
+    scale=4,
 )
 
 
-fig.write_image(get_output_path("jpg"), width=1000, height=700, scale=4)
+img = Image.open(get_output_path("jpg"))
+
+width, height = img.size
+left = 450
+upper = 500
+right = width - 750
+lower = height - 100  # 0px from bottom means keep full height
+cropped_img = img.crop((left, upper, right, lower))
+
+cropped_img.save(get_output_path("jpg"))
