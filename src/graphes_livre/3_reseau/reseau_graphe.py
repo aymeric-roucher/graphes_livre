@@ -1,7 +1,8 @@
-import networkx as nx
 import matplotlib.pyplot as plt
+import networkx as nx
 import numpy as np
 from matplotlib.colors import LinearSegmentedColormap
+
 from graphes_livre import get_output_path
 
 plt.rcParams["font.family"] = "serif"
@@ -227,4 +228,4 @@ def create_neural_network_visualization(
 
 nn_viz = create_neural_network_visualization()
 nn_viz.tight_layout()
-plt.savefig(get_output_path("png"), dpi=500)
+plt.savefig(get_output_path("jpg"), dpi=500)

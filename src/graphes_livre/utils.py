@@ -1,9 +1,9 @@
-import matplotlib.pyplot as plt
-import os
 from pathlib import Path
 
-FONT_FAMILY = "./OpenSans/OpenSans-Regular.ttf"
-BOLD_FONT_FAMILY = "./OpenSans/OpenSans-Bold.ttf"
+import matplotlib.pyplot as plt
+
+FONT_FAMILY = "Open Sans"
+BOLD_FONT_FAMILY = "Open Sans"
 
 SEA_BLUE = "rgba(0,100,255,0.7)"
 
@@ -136,26 +136,25 @@ def get_output_path(extension="html"):
     """
     Get the appropriate output path for exports based on the current script location.
     The filename will be based on the parent directory name of the script.
-    
+
     Args:
         extension (str): The file extension (default: "html")
-    
+
     Returns:
-        str: The full path where the file should be saved (script_dir/parent_dir_name.extension)
+        str: The full path where the file should be saved
     """
     import inspect
-    
+
     # Get the caller's frame to determine the script location
     caller_frame = inspect.currentframe().f_back
-    caller_file = caller_frame.f_globals.get('__file__')
-    
+    caller_file = caller_frame.f_globals.get("__file__")
+
     if caller_file:
         script_path = Path(caller_file)
         script_dir = script_path.parent
         # Use the parent directory name as the filename
         parent_dir_name = script_dir.name
-        filename = f"{parent_dir_name}.{extension}"
-        return str(script_dir / filename)
+        return f"figures/{parent_dir_name}.{extension}"
     else:
         # Fallback
         return f"output.{extension}"
