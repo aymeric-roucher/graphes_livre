@@ -59,7 +59,7 @@ def compute_scaling_law():
     fig.update_layout(
         # title="Lois d'échelle pour la performance sur GAIA",
         xaxis=dict(type="log", title="Training compute"),
-        yaxis=dict(title="Score", range=[0, 1], tickformat=",.0%"),
+        yaxis=dict(title="Score (%)", range=[0, 1], tickformat=",.0%"),
         showlegend=True,
     )
     apply_template(fig, width=800, height=600)
@@ -175,10 +175,10 @@ def plot_gaia_time_law():
     fig.update_layout(
         # title="Performance des assistants généralistes au fil du temps",
         # xaxis_title="Année",
-        yaxis_title=dict(text="Score", font_weight="bold"),
+        yaxis_title=dict(text="Score (%)"),
         yaxis=dict(range=[0, 101], tickformat=",d"),
         xaxis=dict(
-            range=[datetime(2024, 1, 1), datetime(2026, 10, 31)],
+            range=[datetime(2023, 11, 1), datetime(2026, 10, 31)],
             tickvals=x_ticks,
             tickformat="%Y",
         ),
@@ -195,7 +195,7 @@ def plot_gaia_time_law():
         gridcolor="LightGrey",
     )
     apply_template(fig, width=600, height=500)
-    # fig.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+    fig.update_yaxes(tickvals=list(range(20, 101, 20)))
     fig.write_html(get_output_path("html"))
 
 
