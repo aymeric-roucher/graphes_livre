@@ -132,16 +132,16 @@ slope, intercept, r_value, p_value, std_err = stats.linregress(
 line_x = np.array([co2[gdp_name].min() / 1e12, co2[gdp_name].max() / 1e12])
 line_y = slope * line_x + intercept
 
-fig.add_trace(
-    go.Scatter(
-        x=line_x,
-        y=line_y,
-        name="Ligne X = Y",
-        line=dict(color="gray", dash="dash"),
-        showlegend=False,
-        mode="lines",
-    )
-)
+# fig.add_trace(
+#     go.Scatter(
+#         x=line_x,
+#         y=line_y,
+#         name="Ligne X = Y",
+#         line=dict(color="gray", dash="dash"),
+#         showlegend=False,
+#         mode="lines",
+#     )
+# )
 
 # Update layout
 apply_template(fig)
@@ -155,13 +155,15 @@ for year in years_to_annotate:
         xshift=0,
         yshift=0,
         showarrow=False,
-        font=dict(size=14),
+        font=dict(size=15, color=SEA_BLUE),
         xanchor="left",
         yanchor="top",
     )
 fig.update_layout(width=600, height=500, margin=dict(l=50, r=40, t=40, b=50))
 fig.update_xaxes(title="PIB mondial (billions de dollars)", title_font=dict(size=17))
-fig.update_yaxes(title="Emissions mondiales de CO2e (Gt)", title_font=dict(size=17))
+fig.update_yaxes(
+    title="Emissions mondiales de CO<sub>2</sub>e (Gt)", title_font=dict(size=17)
+)
 
 # Show the plot
-fig.write_image(get_output_path("jpg"), width=600, height=500, scale=4)
+fig.write_image(get_output_path("jpg"), width=500, height=400, scale=4)

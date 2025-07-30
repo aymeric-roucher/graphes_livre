@@ -8,7 +8,7 @@ from graphes_livre import SEA_BLUE, apply_template, get_output_path
 
 # Define the data
 data_original = [
-    [1900, 0.000005821, "Analytical Engine"],
+    [1900, 0.000005821, "Machine analytique de Babbage"],
     [1908, 0.0001299, "Hollerith Tabulator"],
     [1911, 0.00005787, "Monroe Calculator"],
     [1919, 0.001064, "IBM Tabulator"],
@@ -86,7 +86,7 @@ fig = px.scatter(
 )
 
 selected_devices = [
-    "Analytical Engine",
+    "Machine analytique de Babbage",
     "ENIAC",
     "IBM 701",
     "Apple II",
@@ -101,8 +101,8 @@ for _, row in df[df["Device"].isin(selected_devices)].iterrows():
         y=np.log10(row["CPS/$1"]),
         text=row["Device"],
         showarrow=False,
-        yshift=0 if row["Device"] == "Analytical Engine" else 15,
-        xshift=60 if row["Device"] == "Analytical Engine" else 0,
+        yshift=0 if row["Device"] == "Machine analytique de Babbage" else 15,
+        xshift=60 if row["Device"] == "Machine analytique de Babbage" else 0,
         font=dict(size=13),
     )
 

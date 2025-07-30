@@ -140,13 +140,12 @@ def plot_gaia_time_law():
         )
     )
 
-    # Add a horizontal dashed black line at y=92%
+    # Add a horizontal dashed black line at y=92
     fig.add_trace(
         go.Scatter(
             x=[dates_smooth[0], dates_smooth[-1]],
             y=[92, 92],
             mode="lines",
-            name="Ligne 92%",
             line=dict(color="black", dash="dash"),
             showlegend=False,
         )
@@ -159,7 +158,7 @@ def plot_gaia_time_law():
             y=[93],
             mode="text",
             marker=dict(size=10, color="black", symbol="square"),
-            text=["Performance humaine: 92%"],
+            text=["Performance humaine: 92 %"],
             textposition="top center",
             textfont=dict(size=13),
             showlegend=False,

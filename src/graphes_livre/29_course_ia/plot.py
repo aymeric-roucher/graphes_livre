@@ -9,7 +9,8 @@ from scipy.special import expit
 
 from graphes_livre import apply_template, get_output_path
 
-USE_CONTINENTS = True
+SHOW_CONTINENTS = True
+SHOW_OPEN = False
 
 
 def download_latest_data_from_space(
@@ -186,11 +187,11 @@ def main():
             .reset_index(drop=True)
         )
 
-    # add release dates into the merged data
+    # add release dates and open-weights info into the merged data
     for k, v in merged_dfs.items():
         merged_dfs[k] = pd.merge(
             merged_dfs[k],
-            release_date_mapping[["key", "Release Date"]],
+            release_date_mapping[["key", "Release Date", "open-weights"]],
             on="key",
             how="left",
         )
@@ -201,35 +202,48 @@ def main():
     # get constants
     df = merged_dfs["Overall"]
 
-    top_orgs = df.groupby("Organization")["rating"].max().nlargest(13).index.tolist()
-    print(top_orgs)
-    top_orgs = [
-        el
-        for el in top_orgs
-        if el not in ["NexusFlow", "Princeton", "Nvidia", "MiniMax", "Zhipu"]
-    ]
-    df = df.loc[(df["Organization"].isin(top_orgs)) & (df["rating"] > 1000)]
-    if USE_CONTINENTS:
-        df["Organization"] = df["Organization"].map(
-            {
-                "OpenAI": "Etats-Unis",
-                "Google": "Etats-Unis",
-                "xAI": "Etats-Unis",
-                "Anthropic": "Etats-Unis",
-                "Meta": "Etats-Unis",
-                "Alibaba": "Chine",
-                "DeepSeek": "Chine",
-                "01 AI": "Chine",
-                "DeepSeek AI": "Chine",
-                "Mistral": "France",
-                "Reka AI": "Etats-Unis",
-                "Zhipu AI": "Chine",
-                "MiniMax": "Chine",
-                "Qwen": "Chine",
-                "Tencent": "Chine",
-                "Moonshot": "Chine",
-            }
+    if SHOW_OPEN:
+        # Filter data and create Open vs Closed weights grouping
+        df = df.loc[df["rating"] > 1000].copy()
+        # Only keep models that have open-weights information (not null)
+        df = df.loc[~df["open-weights"].isna()]
+
+        df["Weight Type"] = df["open-weights"].map({True: "Open", False: "Closed"})
+
+        grouping_column = "Weight Type"
+    else:
+        top_orgs = (
+            df.groupby("Organization")["rating"].max().nlargest(13).index.tolist()
         )
+        print(top_orgs)
+        top_orgs = [
+            el
+            for el in top_orgs
+            if el not in ["NexusFlow", "Princeton", "Nvidia", "MiniMax", "Zhipu"]
+        ]
+        df = df.loc[(df["Organization"].isin(top_orgs)) & (df["rating"] > 1000)]
+        if SHOW_CONTINENTS:
+            df["Organization"] = df["Organization"].map(
+                {
+                    "OpenAI": "États-Unis",
+                    "Google": "États-Unis",
+                    "xAI": "États-Unis",
+                    "Anthropic": "États-Unis",
+                    "Meta": "États-Unis",
+                    "Alibaba": "Chine",
+                    "DeepSeek": "Chine",
+                    "01 AI": "Chine",
+                    "DeepSeek AI": "Chine",
+                    "Mistral": "France",
+                    "Reka AI": "États-Unis",
+                    "Zhipu AI": "Chine",
+                    "MiniMax": "Chine",
+                    "Qwen": "Chine",
+                    "Tencent": "Chine",
+                    "Moonshot": "Chine",
+                }
+            )
+        grouping_column = "Organization"
 
     print("Missing release dates:")
     print(df.loc[df["Release Date"].isna()][["rating", "key", "Model"]])
@@ -248,46 +262,52 @@ def main():
     ]
 
     # Define the current date
-    current_date = pd.Timestamp(year=2025, month=6, day=1)
+    current_date = pd.Timestamp(year=2025, month=5, day=29)
 
     # Define organization to country mapping and colors
-    org_info = {
-        "OpenAI": ("#00A67E", "🇺🇸"),  # Teal
-        "Google": ("#4285F4", "🇺🇸"),  # Google Blue
-        "xAI": ("black", "🇺🇸"),  # Bright Orange
-        "Anthropic": ("#cc785c", "🇺🇸"),  # Brown (as requested)
-        "Meta": ("#0064E0", "🇺🇸"),  # Facebook Blue
-        "Alibaba": ("#6958cf", "🇨🇳"),
-        "DeepSeek": ("#C70039", "🇨🇳"),
-        "01 AI": ("#11871e", "🇨🇳"),  # Bright Green
-        "DeepSeek AI": ("#9900CC", "🇨🇳"),  # Purple
-        "Mistral": ("#ff7000", "🇫🇷"),  # Mistral Orange (as requested)
-        "AI21 Labs": ("#1E90FF", "🇮🇱"),  # Dodger Blue,
-        "Reka AI": ("#FFC300", "🇺🇸"),
-        "Zhipu AI": ("#FFC300", "🇨🇳"),
-        "Moonshot": ("#000000", "🇨🇳"),
-        "Qwen": ("#000000", "🇨🇳"),
-        "Tencent": ("#BBBBBB", "🇨🇳"),
-        "MiniMax": ("#000000", "🇨🇳"),
-        "Cohere": ("#d9a6e5", "🇨🇦"),
-    }
-    if USE_CONTINENTS:
+    if SHOW_OPEN:
         org_info = {
-            "Etats-Unis": ("#4285F4", "🇺🇸"),
-            "Chine": ("#C70039", "🇨🇳"),
-            "France": ("#ff7000", "🇫🇷"),
+            "Open": ("#00A67E", "🔓"),  # Green for open
+            "Closed": ("#C70039", "🔒"),  # Red for closed
         }
+    else:
+        org_info = {
+            "OpenAI": ("#00A67E", "🇺🇸"),  # Teal
+            "Google": ("#4285F4", "🇺🇸"),  # Google Blue
+            "xAI": ("black", "🇺🇸"),  # Bright Orange
+            "Anthropic": ("#cc785c", "🇺🇸"),  # Brown (as requested)
+            "Meta": ("#0064E0", "🇺🇸"),  # Facebook Blue
+            "Alibaba": ("#6958cf", "🇨🇳"),
+            "DeepSeek": ("#C70039", "🇨🇳"),
+            "01 AI": ("#11871e", "🇨🇳"),  # Bright Green
+            "DeepSeek AI": ("#9900CC", "🇨🇳"),  # Purple
+            "Mistral": ("#ff7000", "🇫🇷"),  # Mistral Orange (as requested)
+            "AI21 Labs": ("#1E90FF", "🇮🇱"),  # Dodger Blue,
+            "Reka AI": ("#FFC300", "🇺🇸"),
+            "Zhipu AI": ("#FFC300", "🇨🇳"),
+            "Moonshot": ("#000000", "🇨🇳"),
+            "Qwen": ("#000000", "🇨🇳"),
+            "Tencent": ("#BBBBBB", "🇨🇳"),
+            "MiniMax": ("#000000", "🇨🇳"),
+            "Cohere": ("#d9a6e5", "🇨🇦"),
+        }
+        if SHOW_CONTINENTS:
+            org_info = {
+                "États-Unis": ("#4285F4", "🇺🇸"),
+                "Chine": ("#C70039", "🇨🇳"),
+                "France": ("#ff7000", "🇫🇷"),
+            }
 
     # Create figure
     fig = go.Figure()
 
     for i, org in enumerate(
-        df.groupby("Organization")["rating"]
+        df.groupby(grouping_column)["rating"]
         .max()
         .sort_values(ascending=False)
         .index.tolist()
     ):
-        org_data = df[df["Organization"] == org]
+        org_data = df[df[grouping_column] == org]
 
         if len(org_data) > 0:
             x_values = []
@@ -303,6 +323,20 @@ def main():
                 .reset_index()
             )
 
+            if SHOW_OPEN and org == "Closed Weights":
+                print(f"Daily best models: {len(daily_best)}")
+                target_daily = daily_best[
+                    (daily_best["Release Date"] >= "2024-10-01")
+                    & (daily_best["Release Date"] <= "2025-01-31")
+                ]
+                print(f"Target period daily best: {len(target_daily)}")
+                if len(target_daily) > 0:
+                    print(
+                        target_daily[["Model", "rating", "Release Date"]].sort_values(
+                            "Release Date"
+                        )
+                    )
+
             # Filter out updates less than N days apart, keeping only the later one
             filtered_best = []
             for _, row in daily_best.iterrows():
@@ -312,7 +346,7 @@ def main():
                     days_diff = (
                         row["Release Date"] - filtered_best[-1]["Release Date"]
                     ).days
-                    if days_diff >= 20:
+                    if days_diff >= 5:
                         filtered_best.append(row)
                     else:
                         # Replace the previous entry with the later one
@@ -361,7 +395,6 @@ def main():
                     mode="lines",
                     name=f"{i + 1}. {org} {flag}",
                     line=dict(color=color, width=2),
-                    hoverinfo="skip",
                 )
             )
 
@@ -411,7 +444,9 @@ def main():
         range=[pd.Timestamp("2024-01-01"), current_date + pd.Timedelta(days=10)],
     )
     fig.update_layout(margin=dict(l=70, r=90, t=20, b=50))
-    fig.write_image(get_output_path("jpg"), width=700, height=500, scale=4)
+    if SHOW_OPEN:
+        fig.write_html("Course_IA_open_weights.html")
+    fig.write_image(get_output_path("jpg"), width=600, height=450, scale=4)
 
 
 if __name__ == "__main__":

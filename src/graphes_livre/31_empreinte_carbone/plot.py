@@ -9,7 +9,7 @@ chatgpt_query_g = 3
 laptop_footprint_duration_g = 27
 desktop_footprint_duration_g = 72
 
-title_emissions = "Empreinte quotidienne (gCO2e)"
+title_emissions = "Empreinte quotidienne (g CO<sub>2</sub>e)"
 transport_real_value = 8000
 transport_display_value = 1150  # Truncated value for display
 

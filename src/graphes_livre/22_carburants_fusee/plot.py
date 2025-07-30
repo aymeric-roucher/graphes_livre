@@ -1,16 +1,17 @@
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+
 from graphes_livre import apply_template, get_output_path
-import numpy as np
 
 FONT_SIZE = 16
 data = {
     "variable": [
         # Puissance électrique
-        "Puissance électrique<br>(GW)",
-        "Puissance électrique<br>(GW)",
-        "Puissance électrique<br>(GW)",
+        "Puissance<br>électrique (GW)",
+        "Puissance<br>électrique (GW)",
+        "Puissance<br>électrique (GW)",
         # Financement
         "Financement<br>(milliards USD)",
         "Financement<br>(milliards USD)",
@@ -76,7 +77,7 @@ fig = make_subplots(
     cols=3,
     subplot_titles=limites["variable"].unique(),
     vertical_spacing=0.1,  # Add more vertical space for titles
-    horizontal_spacing=0.1,
+    horizontal_spacing=0.15,
 )
 fig.update_annotations(
     font_size=FONT_SIZE + 2,
@@ -163,7 +164,6 @@ fig.add_trace(
     col=1,
 )
 
-# Update bar gap and width
 fig.update_layout(
     bargap=0.15,
     bargroupgap=0.5,
@@ -182,7 +182,7 @@ for idx, (title, ranges) in enumerate(yaxis_ranges.items()):
         dtick=1,
         row=1,
         col=idx + 1,
-        tickfont=dict(size=FONT_SIZE - 1),
+        tickfont=dict(size=12) if idx == 2 else dict(size=14),
     )
 
-fig.write_image(get_output_path("jpg"), width=700, height=500, scale=4)
+fig.write_image(get_output_path("jpg"), width=500, height=400, scale=4)

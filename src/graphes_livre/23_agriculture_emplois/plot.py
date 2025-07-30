@@ -15,7 +15,7 @@ country_names = {
     "France": "France",
     "Spain": "Espagne",
     "United Kingdom": "Royaume-Uni",
-    "United States": "Etats-Unis",
+    "United States": "États-Unis",
 }
 selected_countries = ["France", "Japan", "Spain", "United States", "United Kingdom"]
 df = df.loc[(df["Entity"].isin(selected_countries)) & (df["Year"] >= 1900)]
