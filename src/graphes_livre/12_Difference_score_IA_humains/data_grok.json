@@ -1,0 +1,212 @@
+[
+    {
+        "name": "SQuAD1.1",
+        "short_french_high_level_name": "Compréhension de lecture",
+        "publication_date": "2016-06-11",
+        "baseline_beaten_date": "2018-01-07",
+        "source_for_when_the_baseline_was_beaten": "https://rajpurkar.github.io/SQuAD-explorer/"
+    },
+    {
+        "name": "SQuAD2.0",
+        "short_french_high_level_name": "Compréhension de lecture avancée",
+        "publication_date": "2018-06-11",
+        "baseline_beaten_date": "2019-12-23",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1910.01108"
+    },
+    {
+        "name": "ImageNet",
+        "short_french_high_level_name": "Reconnaissance d'images",
+        "publication_date": "2009-06-22",
+        "baseline_beaten_date": "2015-12-10",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1512.03385"
+    },
+    {
+        "name": "GLUE",
+        "short_french_high_level_name": "Compréhension du langage",
+        "publication_date": "2018-04-20",
+        "baseline_beaten_date": "2019-09-24",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1909.11942"
+    },
+    {
+        "name": "SuperGLUE",
+        "short_french_high_level_name": "Interprétation nuancée du langage",
+        "publication_date": "2019-05-02",
+        "baseline_beaten_date": "2021-03-11",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/2110.06267"
+    },
+    {
+        "name": "MNIST",
+        "short_french_high_level_name": "Lecture de chiffres manuscrits",
+        "publication_date": "1998-01-01",
+        "baseline_beaten_date": "2012-06-18",
+        "source_for_when_the_baseline_was_beaten": "https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40808.pdf"
+    },
+    {
+        "name": "Switchboard",
+        "short_french_high_level_name": "Reconnaissance vocale",
+        "publication_date": "2000-01-01",
+        "baseline_beaten_date": "2017-03-15",
+        "source_for_when_the_baseline_was_beaten": "https://www.microsoft.com/en-us/research/blog/human-parity-speech-recognition-achieved/"
+    },
+    {
+        "name": "HellaSwag",
+        "short_french_high_level_name": "Raisonnement prédictif",
+        "publication_date": "2019-05-16",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "MMLU",
+        "short_french_high_level_name": "Connaissances générales",
+        "publication_date": "2020-09-07",
+        "baseline_beaten_date": "2023-12-06",
+        "source_for_when_the_baseline_was_beaten": "https://blog.google/technology/ai/google-gemini-ai/"
+    },
+    {
+        "name": "GSM8K",
+        "short_french_high_level_name": "Résolution de problèmes mathématiques",
+        "publication_date": "2021-11-05",
+        "baseline_beaten_date": "2023-03-14",
+        "source_for_when_the_baseline_was_beaten": "https://openai.com/index/gpt-4/"
+    },
+    {
+        "name": "HumanEval",
+        "short_french_high_level_name": "Génération de code",
+        "publication_date": "2021-06-29",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "BBH",
+        "short_french_high_level_name": "Raisonnement complexe",
+        "publication_date": "2022-05-19",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "GPQA",
+        "short_french_high_level_name": "Questions expertes en sciences",
+        "publication_date": "2023-11-20",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "MMMU",
+        "short_french_high_level_name": "Compréhension multimodale massive",
+        "publication_date": "2023-11-27",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "SWE-Bench",
+        "short_french_high_level_name": "Résolution de bugs logiciels",
+        "publication_date": "2023-10-10",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "ARC Challenge",
+        "short_french_high_level_name": "Raisonnement abstrait",
+        "publication_date": "2019-11-07",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "MATH",
+        "short_french_high_level_name": "Problèmes mathématiques compétitifs",
+        "publication_date": "2021-01-29",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "HLE",
+        "short_french_high_level_name": "Examen final de l'humanité",
+        "publication_date": "2024-11-21",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "FrontierMath",
+        "short_french_high_level_name": "Mathématiques avancées frontières",
+        "publication_date": "2024-11-01",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "GAIA",
+        "short_french_high_level_name": "Assistants AI généraux",
+        "publication_date": "2023-11-21",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "MedQA",
+        "short_french_high_level_name": "Questions médicales",
+        "publication_date": "2019-09-11",
+        "baseline_beaten_date": "2024-04-29",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/2404.18416"
+    },
+    {
+        "name": "BigCodeBench",
+        "short_french_high_level_name": "Génération de code complexe",
+        "publication_date": "2024-06-04",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "Winograd Schema Challenge",
+        "short_french_high_level_name": "Résolution d'ambiguïtés linguistiques",
+        "publication_date": "2011-01-01",
+        "baseline_beaten_date": "2019-07-24",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1907.10641"
+    },
+    {
+        "name": "CommonsenseQA",
+        "short_french_high_level_name": "Questions de sens commun",
+        "publication_date": "2019-01-01",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "PIQA",
+        "short_french_high_level_name": "Raisonnement physique",
+        "publication_date": "2020-01-21",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "LibriSpeech",
+        "short_french_high_level_name": "Reconnaissance vocale livres audio",
+        "publication_date": "2015-04-01",
+        "baseline_beaten_date": "2018-11-29",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1811.11624"
+    },
+    {
+        "name": "WMT2014",
+        "short_french_high_level_name": "Traduction automatique",
+        "publication_date": "2014-01-01",
+        "baseline_beaten_date": "2018-03-14",
+        "source_for_when_the_baseline_was_beaten": "https://www.microsoft.com/en-us/research/blog/microsoft-reaches-a-historic-milestone-using-ai-to-match-human-performance-in-translating-news-from-chinese-to-english/"
+    },
+    {
+        "name": "COCO",
+        "short_french_high_level_name": "Détection et description d'objets",
+        "publication_date": "2014-09-01",
+        "baseline_beaten_date": "2017-03-01",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1703.06870"
+    },
+    {
+        "name": "VQA v2",
+        "short_french_high_level_name": "Réponses à questions visuelles",
+        "publication_date": "2017-03-21",
+        "baseline_beaten_date": null,
+        "source_for_when_the_baseline_was_beaten": null
+    },
+    {
+        "name": "CIFAR-10",
+        "short_french_high_level_name": "Classification d'images simples",
+        "publication_date": "2009-01-01",
+        "baseline_beaten_date": "2015-02-03",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1412.6071"
+    }
+]

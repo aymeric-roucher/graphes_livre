@@ -1,0 +1,212 @@
+[
+    {
+        "name": "MNIST",
+        "french_headline": "Lecture de chiffres manuscrits",
+        "publication_date": "1998-11-01",
+        "baseline_beaten_date": "2003-01-01",
+        "source": "LeCun et al. (1998) reported human error rate of 2.5%; CNNs achieved <1% error rate by 2003"
+    },
+    {
+        "name": "ImageNet",
+        "french_headline": "Reconnaissance d'images",
+        "publication_date": "2009-06-25",
+        "baseline_beaten_date": "2015-02-06",
+        "source": "Microsoft ResNet achieved 4.49% error vs 5.1% human baseline (arXiv:1502.01852)"
+    },
+    {
+        "name": "CIFAR-10",
+        "french_headline": "Classification d'images simples",
+        "publication_date": "2009-04-08",
+        "baseline_beaten_date": "2014-12-01",
+        "source": "Deep CNNs achieved 96-97% accuracy vs 94% human baseline by 2014"
+    },
+    {
+        "name": "Caltech-101",
+        "french_headline": "Reconnaissance d'objets variés",
+        "publication_date": "2003-09-01",
+        "baseline_beaten_date": null,
+        "source": "No formal human baseline established for this benchmark"
+    },
+    {
+        "name": "PASCAL VOC",
+        "french_headline": "Détection d'objets complexes",
+        "publication_date": "2005-06-01",
+        "baseline_beaten_date": null,
+        "source": "No formal human baseline established; focused on algorithm comparison"
+    },
+    {
+        "name": "SQuAD1.1",
+        "french_headline": "Compréhension de lecture",
+        "publication_date": "2016-06-16",
+        "baseline_beaten_date": "2018-01-11",
+        "source": "Alibaba (82.44) and Microsoft (82.65) exceeded human baseline (82.304) in January 2018"
+    },
+    {
+        "name": "SQuAD2.0",
+        "french_headline": "Compréhension de lecture avancée",
+        "publication_date": "2018-06-11",
+        "baseline_beaten_date": "2019-10-01",
+        "source": "BERT-based models exceeded human performance (86.8 F1) by late 2019"
+    },
+    {
+        "name": "GLUE",
+        "french_headline": "Compréhension du langage",
+        "publication_date": "2018-05-02",
+        "baseline_beaten_date": "2019-06-01",
+        "source": "BERT achieved 88.4% vs 87.1% non-expert human baseline"
+    },
+    {
+        "name": "SuperGLUE",
+        "french_headline": "Interprétation nuancée du langage",
+        "publication_date": "2019-05-02",
+        "baseline_beaten_date": "2021-01-06",
+        "source": "Microsoft DeBERTa and Google T5 exceeded human performance (89.8)"
+    },
+    {
+        "name": "Switchboard",
+        "french_headline": "Reconnaissance vocale",
+        "publication_date": "1990-01-01",
+        "baseline_beaten_date": "2016-10-18",
+        "source": "Microsoft achieved 5.1% WER matching professional human transcribers"
+    },
+    {
+        "name": "HellaSwag",
+        "french_headline": "Raisonnement prédictif",
+        "publication_date": "2019-05-19",
+        "baseline_beaten_date": "2023-03-14",
+        "source": "GPT-4 achieved 95.3% (10-shot) vs 95.6% human baseline"
+    },
+    {
+        "name": "MMLU",
+        "french_headline": "Connaissances générales",
+        "publication_date": "2020-09-07",
+        "baseline_beaten_date": null,
+        "source": "Models exceed 34.5% non-expert baseline but not 89.8% expert baseline"
+    },
+    {
+        "name": "GSM8K",
+        "french_headline": "Résolution de problèmes mathématiques",
+        "publication_date": "2021-10-07",
+        "baseline_beaten_date": "2022-11-01",
+        "source": "GPT-4 and other models achieve >95% (bright middle school student baseline)"
+    },
+    {
+        "name": "MATH",
+        "french_headline": "Mathématiques de compétition",
+        "publication_date": "2021-03-05",
+        "baseline_beaten_date": "2024-06-01",
+        "source": "Claude 3.5 Sonnet achieves ~97% vs 90% expert mathematician baseline"
+    },
+    {
+        "name": "HumanEval",
+        "french_headline": "Génération de code",
+        "publication_date": "2021-07-07",
+        "baseline_beaten_date": null,
+        "source": "No formal human baseline established; GPT-4 achieves 67% pass@1"
+    },
+    {
+        "name": "BBH",
+        "french_headline": "Raisonnement complexe",
+        "publication_date": "2022-10-17",
+        "baseline_beaten_date": "2022-10-17",
+        "source": "PaLM with CoT exceeded human performance on 10/23 tasks at publication"
+    },
+    {
+        "name": "TruthfulQA",
+        "french_headline": "Véracité des réponses",
+        "publication_date": "2021-09-08",
+        "baseline_beaten_date": null,
+        "source": "Best models approach but haven't clearly exceeded 94% human baseline"
+    },
+    {
+        "name": "APPS",
+        "french_headline": "Programmation compétitive",
+        "publication_date": "2021-05-20",
+        "baseline_beaten_date": null,
+        "source": "GPT-4 achieves ~20% on intro problems; expert programmers much higher"
+    },
+    {
+        "name": "SWE-bench",
+        "french_headline": "Ingénierie logicielle pratique",
+        "publication_date": "2023-10-10",
+        "baseline_beaten_date": null,
+        "source": "Best models achieve 49% vs higher expected performance from engineers"
+    },
+    {
+        "name": "ARC-AGI",
+        "french_headline": "Raisonnement abstrait",
+        "publication_date": "2019-11-07",
+        "baseline_beaten_date": null,
+        "source": "Best AI systems <31% vs 80% average human performance"
+    },
+    {
+        "name": "GPQA",
+        "french_headline": "Questions niveau doctoral",
+        "publication_date": "2023-11-20",
+        "baseline_beaten_date": null,
+        "source": "Claude 3.5 achieves 59.4% vs 65% PhD expert baseline"
+    },
+    {
+        "name": "GQA",
+        "french_headline": "Raisonnement visuel compositionnel",
+        "publication_date": "2019-02-26",
+        "baseline_beaten_date": null,
+        "source": "Best models achieve 54.1% vs 89.3% human baseline"
+    },
+    {
+        "name": "TextVQA",
+        "french_headline": "Lecture de texte dans les images",
+        "publication_date": "2019-04-23",
+        "baseline_beaten_date": null,
+        "source": "Significant gap remains between AI and human performance"
+    },
+    {
+        "name": "MS COCO Captions",
+        "french_headline": "Description d'images",
+        "publication_date": "2014-05-01",
+        "baseline_beaten_date": "2020-01-01",
+        "source": "Vision-language models exceed human CIDEr scores by 2020"
+    },
+    {
+        "name": "WMT Translation",
+        "french_headline": "Traduction automatique",
+        "publication_date": "2006-06-01",
+        "baseline_beaten_date": "2018-03-01",
+        "source": "Neural MT systems matched professional translators on news by 2018"
+    },
+    {
+        "name": "Penn Treebank",
+        "french_headline": "Analyse syntaxique",
+        "publication_date": "1993-01-01",
+        "baseline_beaten_date": "2018-08-01",
+        "source": "Neural parsers exceeded 95% accuracy human expert baseline"
+    },
+    {
+        "name": "AGIEval",
+        "french_headline": "Examens standardisés",
+        "publication_date": "2023-04-13",
+        "baseline_beaten_date": null,
+        "source": "GPT-4 exceeds average human on many exams but not all expert levels"
+    },
+    {
+        "name": "CodeContests",
+        "french_headline": "Compétitions de programmation",
+        "publication_date": "2022-02-03",
+        "baseline_beaten_date": null,
+        "source": "AlphaCode performs at ~54th percentile of competitive programmers"
+    },
+    {
+        "name": "VQA 2.0",
+        "french_headline": "Questions-réponses visuelles",
+        "publication_date": "2017-05-01",
+        "baseline_beaten_date": null,
+        "source": "Best models ~75% vs estimated >90% human performance"
+    },
+    {
+        "name": "Natural Questions",
+        "french_headline": "Questions naturelles Google",
+        "publication_date": "2019-01-23",
+        "baseline_beaten_date": "2020-12-01",
+        "source": "T5 and similar models exceeded human F1 score by late 2020"
+    }
+]
