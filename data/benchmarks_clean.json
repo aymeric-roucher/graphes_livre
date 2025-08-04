@@ -7,15 +7,8 @@
         "source_for_when_the_baseline_was_beaten": "https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40808.pdf"
     },
     {
-        "name": "Switchboard",
-        "short_french_high_level_name": "Reconnaissance vocale",
-        "publication_date": "1992-03-23",
-        "baseline_beaten_date": "2017-03-15",
-        "source_for_when_the_baseline_was_beaten": "https://www.microsoft.com/en-us/research/blog/human-parity-speech-recognition-achieved/"
-    },
-    {
         "name": "LFW",
-        "short_french_high_level_name": "Identification de portraits",
+        "short_french_high_level_name": "Identification de visages",
         "publication_date": "2007-04-01",
         "baseline_beaten_date": "2014-04-15",
         "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1404.3840"
@@ -29,49 +22,42 @@
     },
     {
         "name": "CIFAR-10",
-        "short_french_high_level_name": "Classification d'images simples",
+        "short_french_high_level_name": "Classification d'images",
         "publication_date": "2009-04-08",
         "baseline_beaten_date": "2015-05-13",
         "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1412.6071"
     },
     {
-        "name": "MMLU",
-        "short_french_high_level_name": "Connaissances générales",
-        "publication_date": "2020-09-07",
-        "baseline_beaten_date": "2023-12-06",
-        "source_for_when_the_baseline_was_beaten": "Expert baseline reported to be 89.8% in https://arxiv.org/pdf/2009.03300. Gemini 1.0 Ultra solved it in December 2023: https://blog.google/technology/ai/google-gemini-ai/"
+        "name": "WMT",
+        "short_french_high_level_name": "Traduction",
+        "publication_date": "2014-01-01",
+        "baseline_beaten_date": "2018-03-14",
+        "source_for_when_the_baseline_was_beaten": "https://www.microsoft.com/en-us/research/blog/microsoft-reaches-a-historic-milestone-using-ai-to-match-human-performance-in-translating-news-from-chinese-to-english/"
     },
     {
-        "name": "GSM8K",
-        "short_french_high_level_name": "Résolution de problèmes mathématiques",
-        "publication_date": "2021-10-27",
-        "baseline_beaten_date": "2023-03-14",
-        "source_for_when_the_baseline_was_beaten": "https://openai.com/index/gpt-4/"
-    },
-    {
-        "name": "GPQA-diamond",
-        "short_french_high_level_name": "Questions expertes en sciences",
-        "publication_date": "2023-11-20",
-        "baseline_beaten_date": "2025-04-16",
-        "source_for_when_the_baseline_was_beaten": "o3 gets 83% on GPQA-diamond: https://www.vals.ai/benchmarks/gpqa-04-18-2025. GPQA paper gives 21.9% for human non experts and 81.2% for experts for Diamond subset: https://arxiv.org/pdf/2311.12022"
-    },
-    {
-        "name": "MMMU",
-        "short_french_high_level_name": "Compréhension multimodale massive",
-        "publication_date": "2023-11-27",
-        "baseline_beaten_date": "2025-04-16",
-        "source_for_when_the_baseline_was_beaten": "o3 gets 83% on MMMU: https://www.anthropic.com/news/claude-4. Baseline is 82.6% for the medium human expert per https://arxiv.org/pdf/2311.16502"
+        "name": "COCO",
+        "short_french_high_level_name": "Détection d'objets",
+        "publication_date": "2014-09-01",
+        "baseline_beaten_date": "2017-03-01",
+        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1703.06870"
     },
     {
         "name": "SQuAD1.1",
         "short_french_high_level_name": "Compréhension de lecture",
         "publication_date": "2016-06-16",
         "baseline_beaten_date": "2018-01-07",
-        "source_for_when_the_baseline_was_beaten": "https://rajpurkar.github.io/SQuAD-explorer/"
+        "source_for_when_the_baseline_was_beaten": "https://rajpurkar.github.io/SQuAD-explorer/. On precise beating date: https://medium.com/syncedreview/microsoft-research-asia-past-present-and-future-of-nlp-e057e9aaab0f"
+    },
+    {
+        "name": "VQA v2",
+        "short_french_high_level_name": "Compréhension d'image",
+        "publication_date": "2017-03-21",
+        "baseline_beaten_date": "2022-09-14",
+        "source_for_when_the_baseline_was_beaten": "GPT-4-vision got 77: https://openai.com/index/gpt-4-research/, and reports Pali got over 84% (https://arxiv.org/abs/2209.06794), so over the baseline shown here: https://arxiv.org/pdf/2106.02280"
     },
     {
         "name": "SQuAD2.0",
-        "short_french_high_level_name": "Compréhension de lecture avancée",
+        "short_french_high_level_name": "Compréhension de lecture",
         "publication_date": "2018-06-11",
         "baseline_beaten_date": "2019-10-02",
         "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1910.01108"
@@ -92,14 +78,14 @@
     },
     {
         "name": "MATH",
-        "short_french_high_level_name": "Problèmes mathématiques compétitifs",
+        "short_french_high_level_name": "Mathématiques, compétitions de lycée",
         "publication_date": "2021-11-08",
         "baseline_beaten_date": "2024-02-06",
         "source_for_when_the_baseline_was_beaten": "PHD students to 40%, according to https://arxiv.org/pdf/2103.03874. Gemini ultra (feb 24) scores 50%: ce benchmark at https://openai.com/index/hello-gpt-4o/"
     },
     {
         "name": "MedQA",
-        "short_french_high_level_name": "Questions médicales",
+        "short_french_high_level_name": "Médecine, questions de concours",
         "publication_date": "2020-09-28",
         "baseline_beaten_date": "2023-03-01",
         "source_for_when_the_baseline_was_beaten": "Baseline is 60%: https://github.com/jind11/MedQA/issues/3. GPT-4-base beat it in March 23: https://www.microsoft.com/en-us/research/blog/the-power-of-prompting/"
@@ -113,49 +99,56 @@
     },
     {
         "name": "CommonsenseQA",
-        "short_french_high_level_name": "Questions de sens commun",
+        "short_french_high_level_name": "Sens commun",
         "publication_date": "2018-11-02",
         "baseline_beaten_date": "2021-12-06",
         "source_for_when_the_baseline_was_beaten": "Human baseline is 89% according to https://arxiv.org/pdf/2303.11436. Beaten here: https://arxiv.org/abs/2112.03254"
     },
     {
-        "name": "WMT",
-        "short_french_high_level_name": "Traduction automatique",
-        "publication_date": "2014-01-01",
-        "baseline_beaten_date": "2018-03-14",
-        "source_for_when_the_baseline_was_beaten": "https://www.microsoft.com/en-us/research/blog/microsoft-reaches-a-historic-milestone-using-ai-to-match-human-performance-in-translating-news-from-chinese-to-english/"
+        "name": "MMLU",
+        "short_french_high_level_name": "Connaissances générales",
+        "publication_date": "2020-09-07",
+        "baseline_beaten_date": "2023-12-06",
+        "source_for_when_the_baseline_was_beaten": "Expert baseline reported to be 89.8% in https://arxiv.org/pdf/2009.03300. Gemini 1.0 Ultra solved it in December 2023: https://blog.google/technology/ai/google-gemini-ai/"
     },
     {
-        "name": "COCO",
-        "short_french_high_level_name": "Détection et description d'objets",
-        "publication_date": "2014-09-01",
-        "baseline_beaten_date": "2017-03-01",
-        "source_for_when_the_baseline_was_beaten": "https://arxiv.org/abs/1703.06870"
+        "name": "GSM8K",
+        "short_french_high_level_name": "Mathématiques élémentaires",
+        "publication_date": "2021-10-27",
+        "baseline_beaten_date": "2023-03-14",
+        "source_for_when_the_baseline_was_beaten": "https://openai.com/index/gpt-4/"
     },
     {
-        "name": "VQA v2",
-        "short_french_high_level_name": "Réponses à questions visuelles",
-        "publication_date": "2017-03-21",
-        "baseline_beaten_date": "2022-09-14",
-        "source_for_when_the_baseline_was_beaten": "GPT-4-vision got 77: https://openai.com/index/gpt-4-research/, and reports Pali got over 84% (https://arxiv.org/abs/2209.06794), so over the baseline shown here: https://arxiv.org/pdf/2106.02280"
+        "name": "MMMU",
+        "short_french_high_level_name": "Raisonnement multimodal",
+        "publication_date": "2023-11-27",
+        "baseline_beaten_date": "2025-04-16",
+        "source_for_when_the_baseline_was_beaten": "o3 gets 83% on MMMU: https://www.anthropic.com/news/claude-4. Baseline is 82.6% for the medium human expert per https://arxiv.org/pdf/2311.16502"
+    },
+    {
+        "name": "GPQA",
+        "short_french_high_level_name": "Connaissances scientifiques, doctorat",
+        "publication_date": "2023-11-20",
+        "baseline_beaten_date": "2025-04-16",
+        "source_for_when_the_baseline_was_beaten": "o3 gets 83% on GPQA-diamond: https://www.vals.ai/benchmarks/gpqa-04-18-2025. GPQA paper gives 21.9% for human non experts and 81.2% for experts for Diamond subset: https://arxiv.org/pdf/2311.12022"
     },
     {
         "name": "GAIA",
-        "short_french_high_level_name": "Assistants AI généraux",
+        "short_french_high_level_name": "Agents IA",
         "publication_date": "2023-10-20",
         "baseline_beaten_date": null,
         "source_for_when_the_baseline_was_beaten": "Date taken for release: first commit of the repo"
     },
     {
         "name": "BigCodeBench",
-        "short_french_high_level_name": "Génération de code complexe",
+        "short_french_high_level_name": "Génération de code",
         "publication_date": "2024-06-18",
         "baseline_beaten_date": null,
         "source_for_when_the_baseline_was_beaten": "Its not really reported but seems high, 97% on 11 samples: https://huggingface.co/blog/leaderboard-bigcodebench"
     },
     {
         "name": "FrontierMath",
-        "short_french_high_level_name": "Mathématiques avancées frontières",
+        "short_french_high_level_name": "Mathématiques de recherche",
         "publication_date": "2024-11-01",
         "baseline_beaten_date": null,
         "source_for_when_the_baseline_was_beaten": null

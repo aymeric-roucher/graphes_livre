@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-from graphes_livre.utils import apply_template, get_output_path
+from graphes_livre.utils import SEA_BLUE, apply_template, get_output_path
 
 data_clean = pd.read_json("data/benchmarks_clean.json")
 
@@ -43,68 +43,23 @@ if PLOT_EXPONENTIALS:
         )
     fig.write_image("celerity.png")
 
+# Sort by publication date to ensure proper chronological order
+benchmarks_df_sorted = benchmarks_df.sort_values("publication_date").reset_index(
+    drop=True
+)
 
-# Dynamic slot assignment - slots become available after benchmark is beaten
-import random
-
-NUM_SLOTS = 7
-available_slots = list(range(NUM_SLOTS))
-slot_assignments = {}
-slot_end_dates = {}
-
-
-names_to_show_in_legend = [
-    "GPQA-diamond",
-    "GSM8K",
-    "GLUE",
-    "SQuAD1.1",
-    "SQuAD2.0",
-    "CommonsenseQA",
-    "MMMU",
-    "MedQA",
-]
-
-# Special characters for each benchmark in legend
-special_chars = ["★", "●", "▲", "■", "◆", "✦", "⬢", "᛭"]
-legend_char_map = {
-    name: special_chars[i] for i, name in enumerate(names_to_show_in_legend)
-}
-# Sort by publication date to process chronologically
-for i, row in benchmarks_df.iterrows():
+for i, row in benchmarks_df_sorted.iterrows():
     pub_date = row["publication_date"]
     end_date = row["baseline_beaten_date"]
+    y_position = len(benchmarks_df_sorted) - i - 1  # Reverse order: earliest on top
 
-    # Free up slots that have ended before this publication date
-    slots_to_free = []
-    for slot, slot_end in slot_end_dates.items():
-        if slot_end <= pub_date:
-            slots_to_free.append(slot)
-
-    for slot in slots_to_free:
-        if slot not in available_slots:
-            available_slots.append(slot)
-        del slot_end_dates[slot]
-
-    # Assign a random available slot
-    if available_slots:
-        if row["name"] == "Switchboard":
-            y_position = NUM_SLOTS - 1
-        else:
-            y_position = random.choice(available_slots)
-        available_slots.remove(y_position)
-    else:
-        raise ValueError("No slots available, increase parameter NUM_SLOTS")
-
-    slot_assignments[row["name"]] = y_position
-    slot_end_dates[y_position] = end_date
-
-    # Create the main trace for the bar
+    # Main trace for the bar
     fig.add_trace(
         go.Scatter(
             x=[pub_date, end_date],
             y=[y_position + 1, y_position + 1],
             mode="lines",
-            line=dict(width=12, color=colors[i % len(colors)]),
+            line=dict(width=12, color=SEA_BLUE),
             name="",
             showlegend=False,
             hovertemplate=f"<b>{row['name']}</b><br>"
@@ -114,42 +69,19 @@ for i, row in benchmarks_df.iterrows():
         )
     )
 
-    # Add a separate invisible trace for legend (text only)
-    if row["name"] in names_to_show_in_legend:
-        fig.add_trace(
-            go.Scatter(
-                x=[None],
-                y=[None],
-                mode="markers",
-                marker=dict(size=0, opacity=0),
-                name=f"{legend_char_map[row['name']]} {row['name']}",
-                showlegend=True,
-            )
-        )
-
-    # Add text annotation in the middle of the bar
-    mid_date = pub_date + (end_date - pub_date) / 2
-    if row["name"] in names_to_show_in_legend:
-        # Show special character for legend items
-        annotation_text = legend_char_map[row["name"]]
-    else:
-        # Show full name for non-legend items
-        annotation_text = row["name"]
-
     fig.add_annotation(
-        x=mid_date,
+        x=end_date,
         y=y_position + 1,
-        text=annotation_text,
+        text=f"{row['name']} - {row['short_french_high_level_name']}",
         showarrow=False,
-        font=dict(color="black", size=10, family="Open Sans"),
+        font=dict(color="black", size=11, family="Open Sans"),
+        xanchor="left",
+        xshift=2,
     )
 
-min_date = benchmarks_df["publication_date"].min()
+min_date = benchmarks_df_sorted["publication_date"].min()
 max_date = current_date
 print(min_date, max_date)
-
-# Determine the maximum slot used for layout
-max_slot_used = max(slot_assignments.values()) if slot_assignments else 0
 
 
 apply_template(fig)
@@ -158,7 +90,7 @@ fig.update_layout(
     yaxis=dict(
         showticklabels=False,
         showgrid=False,
-        range=[0.5, max_slot_used + 1.5],
+        range=[0.5, len(benchmarks_df_sorted) + 0.5],
         linewidth=0,
     ),
     xaxis=dict(
@@ -170,17 +102,10 @@ fig.update_layout(
         gridcolor="lightgray",
         gridwidth=1,
     ),
-    showlegend=True,
-    legend=dict(
-        font=dict(size=10),
-        x=0.9,
-        y=1,
-        xanchor="left",
-        yanchor="top",
-        bgcolor="rgba(255,255,255,0.)",
-    ),
+    showlegend=False,
+    margin=dict(l=5, t=0, b=20, r=235),
 )
-fig.write_image(get_output_path("jpg"), width=600, height=300, scale=4)
+fig.write_image(get_output_path("jpg"), width=450, height=320, scale=4)
 
 
 # NOTES - I removed:
@@ -199,3 +124,11 @@ fig.write_image(get_output_path("jpg"), width=600, height=300, scale=4)
 #     "source_for_when_the_baseline_was_beaten": "Baseline beaten https://arxiv.org/abs/2210.09261"
 # },
 # - HumanEval because no human baseline
+# Switchboard because too old:
+#     {
+#         "name": "Switchboard",
+#         "short_french_high_level_name": "Reconnaissance vocale",
+#         "publication_date": "1992-03-23",
+#         "baseline_beaten_date": "2017-03-15",
+#         "source_for_when_the_baseline_was_beaten": "https://www.microsoft.com/en-us/research/blog/human-parity-speech-recognition-achieved/"
+#     },
