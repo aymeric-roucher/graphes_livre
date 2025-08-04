@@ -96,7 +96,7 @@ fig.update_layout(
     xaxis=dict(
         tickvals=[pd.to_datetime(f"{year}-01-01") for year in range_years],
         ticktext=[str(year) for year in range_years],
-        tickfont=dict(size=12),
+        tickfont=dict(size=11),
         range=[min_date - pd.DateOffset(months=3), max_date + pd.DateOffset(months=3)],
         showgrid=True,
         gridcolor="lightgray",
@@ -105,7 +105,7 @@ fig.update_layout(
     showlegend=False,
     margin=dict(l=5, t=0, b=20, r=235),
 )
-fig.write_image(get_output_path("jpg"), width=450, height=320, scale=4)
+fig.write_image(get_output_path("jpg"), width=430, height=320, scale=4)
 
 
 # NOTES - I removed:
